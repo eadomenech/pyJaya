@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from core import JayaBase
+from .core import JayaBase
 import numpy as np
 
 

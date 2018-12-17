@@ -4,8 +4,7 @@
 class JayaBase(object):
 
     def __init__(
-            self, num_solutions, num_variables,
-            function_to_evaluate):
+            self, num_solutions, num_variables, function_to_evaluate):
         super(JayaBase, self).__init__()
         self.to_evaluate = function_to_evaluate
         self.n = num_solutions

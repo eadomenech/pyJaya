@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from core import JayaBase
+from .core import JayaBase
 import numpy as np
 import math
 
@@ -19,7 +19,7 @@ class JayaBinary(JayaBase):
                 r2 = np.random.rand(self.m)
                 for v_item, v_value in enumerate(p):
                     p[v_item] = v_value+r1[v_item]*(population[result['best_item']][v_item]-abs(v_value))-r2[v_item]*(population[result['worst_item']][v_item]-abs(v_value))
-                    if round(p[v_item]) < math.tanh(abs(p[v_item])):
+                    if np.random.rand() < math.tanh(abs(p[v_item])):
                         p[v_item] = 1.0
                     else:
                         p[v_item] = 0.0
@@ -28,4 +28,4 @@ class JayaBinary(JayaBase):
                         self.to_evaluate(population_aux[x]) <
                         self.to_evaluate(population[x])):
                     population[x] = population_aux[x]
-            return self.getBestAndWorst(population)
+        return self.getBestAndWorst(population)

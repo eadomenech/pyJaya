@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from jaya.clasic import JayaClasic
-from jaya.binary import JayaBinary
+from pyjaya.clasic import JayaClasic
+from pyjaya.binary import JayaBinary
 import numpy as np
 
 
@@ -13,15 +13,15 @@ def function2(solution):
 
 
 def main():
-    print "RUN: JayaClasic"
+    print("RUN: JayaClasic")
     jc = JayaClasic(5, 5, function1)
-    print jc.run(2000)
-    print "--------------------------------------------------------------"
+    print(jc.run(100))
+    print("--------------------------------------------------------------")
 
-    print "RUN: JayaBinary"
+    print("RUN: JayaBinary")
     jc = JayaBinary(5, 21, function2)
-    print jc.run(10)
-    print "--------------------------------------------------------------"
+    print(jc.run(100))
+    print("--------------------------------------------------------------")
 
 
 if __name__ == '__main__':
