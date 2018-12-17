@@ -10,7 +10,7 @@ m = 5
 # n: number of candidate solutions
 n = 5
 # i: number of iteration
-number_iteration = 2000
+number_iteration = 4000
 
 
 def funtion_to_minimize(solution):
