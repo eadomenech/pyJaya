@@ -24,8 +24,14 @@ class JayaBinary(JayaBase):
                     else:
                         p[v_item] = 0.0
             for x in range(self.n):
-                if (
-                        self.to_evaluate(population_aux[x]) <
-                        self.to_evaluate(population[x])):
-                    population[x] = population_aux[x]
+                if self.minimax:
+                    if (
+                            self.to_evaluate(population_aux[x]) >
+                            self.to_evaluate(population[x])):
+                        population[x] = population_aux[x]
+                else:
+                    if (
+                            self.to_evaluate(population_aux[x]) <
+                            self.to_evaluate(population[x])):
+                        population[x] = population_aux[x]
         return self.getBestAndWorst(population)

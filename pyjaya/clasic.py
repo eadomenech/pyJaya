@@ -30,9 +30,15 @@ class JayaClasic(JayaBase):
                     r2 = np.random.rand(self.m)
                     p[v_item] = (v_value+r1[v_item] * (population[result['best_item']][v_item] - abs(v_value))- r2[v_item]* (population[result['worst_item']][v_item]-abs(v_value)))
             for x in range(self.n):
-                if (
-                        self.to_evaluate(population_aux[x]) <
-                        self.to_evaluate(population[x])):
-                    population[x] = population_aux[x]
+                if self.minimax:
+                    if (
+                            self.to_evaluate(population_aux[x]) >
+                            self.to_evaluate(population[x])):
+                        population[x] = population_aux[x]
+                else:
+                    if (
+                            self.to_evaluate(population_aux[x]) <
+                            self.to_evaluate(population[x])):
+                        population[x] = population_aux[x]
 
         return self.getBestAndWorst(population)

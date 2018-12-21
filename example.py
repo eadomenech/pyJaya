@@ -15,11 +15,13 @@ def function2(solution):
 def main():
     print("RUN: JayaClasic")
     jc = JayaClasic(5, 5, function1)
+    jc.toMaximize()
     print(jc.run(100))
     print("--------------------------------------------------------------")
 
     print("RUN: JayaBinary")
     jc = JayaBinary(5, 21, function2)
+    jc.toMaximize()
     print(jc.run(100))
     print("--------------------------------------------------------------")
 
