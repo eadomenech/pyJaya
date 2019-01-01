@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from pyjaya.clasic import JayaClasic
 from pyjaya.binary import JayaBinary
+from pyjaya.utils import FloatRange, IntRange, BinaryRange
 import numpy as np
 
 
@@ -14,13 +15,15 @@ def function2(solution):
 
 def main():
     print("RUN: JayaClasic")
-    jc = JayaClasic(5, 5, function1)
-    jc.toMaximize()
+    listVars1 = [FloatRange(-100.0, 100.0) for i in range(2)]
+    listVars2 = [IntRange(0, 50) for i in range(2)]
+    jc = JayaClasic(5, listVars1+listVars2, function1)
     print(jc.run(100))
     print("--------------------------------------------------------------")
 
     print("RUN: JayaBinary")
-    jc = JayaBinary(5, 21, function2)
+    listVars = [BinaryRange() for i in range(10)]
+    jc = JayaBinary(5, listVars, function2)
     jc.toMaximize()
     print(jc.run(100))
     print("--------------------------------------------------------------")

@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
-from .core import JayaBase
+from .base import JayaBase
 import numpy as np
 import math
 
 
 class JayaBinary(JayaBase):
-
-    def generatePopulation(self):
-        return np.random.randint(2, size=(self.n, self.m)).astype(float)
 
     def run(self, number_iterations):
         population = self.generatePopulation()
@@ -15,8 +12,8 @@ class JayaBinary(JayaBase):
         for i in range(number_iterations):
             population_aux = population.copy()
             for p in population_aux:
-                r1 = np.random.rand(self.m)
-                r2 = np.random.rand(self.m)
+                r1 = np.random.rand(self.cantVars)
+                r2 = np.random.rand(self.cantVars)
                 for v_item, v_value in enumerate(p):
                     p[v_item] = v_value+r1[v_item]*(population[result['best_item']][v_item]-abs(v_value))-r2[v_item]*(population[result['worst_item']][v_item]-abs(v_value))
                     if np.random.rand() < math.tanh(abs(p[v_item])):
