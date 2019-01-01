@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from pyjaya.clasic import JayaClasic
-from pyjaya.utils import Int
+from pyjaya.utils import FloatRange
 import numpy as np
 from PIL import Image
 from scipy import misc
@@ -25,13 +25,15 @@ def function(solution):
 
 def main():
     print("RUN: JayaClasic")
-    listVars = [Float(0.0, 180.0)]
-    jc = JayaClasic(5, var, function)
+    listVars = [FloatRange(0.0, 180.0)]
+    jc = JayaClasic(5, listVars, function)
     jc.toMaximize()
-    result = jc.run(100)
+    result = jc.run(10)
     print(result)
     print("--------------------------------------------------------------")
-    img = Image.open('6.bmp').convert('L').rotate(result['best_solution']).show()
+    img = Image.open(
+        'static/handwritten_document.bmp'
+    ).convert('L').rotate(result['best_solution']).show()
 
 
 
