@@ -3,7 +3,6 @@ from pyjaya.clasic import JayaClasic
 from pyjaya.utils import FloatRange
 import numpy as np
 from PIL import Image
-from scipy import misc
 from skimage import feature
 
 
@@ -28,7 +27,7 @@ def main():
     listVars = [FloatRange(0.0, 180.0)]
     jc = JayaClasic(5, listVars, function)
     jc.toMaximize()
-    result = jc.run(10)
+    result = jc.run(5)
     print(result)
     print("--------------------------------------------------------------")
     img = Image.open(
