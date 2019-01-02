@@ -21,12 +21,12 @@ class JayaClasic(JayaBase):
                 if self.minimax:
                     if (
                             self.to_evaluate(population_aux[x]) >
-                            self.to_evaluate(population[x])):
+                            self.to_evaluate(population[x])) and self.constraintsOK(population_aux[x]):
                         population[x] = population_aux[x]
                 else:
                     if (
                             self.to_evaluate(population_aux[x]) <
-                            self.to_evaluate(population[x])):
+                            self.to_evaluate(population[x])) and self.constraintsOK(population_aux[x]):
                         population[x] = population_aux[x]
 
         return self.getBestAndWorst(population)

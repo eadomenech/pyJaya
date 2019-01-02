@@ -6,20 +6,38 @@ import numpy as np
 class JayaBase(object):
 
     def __init__(
-            self, num_solutions, listVars, function_to_evaluate):
+            self, num_solutions, listVars, function_to_evaluate,
+            listConstraints=[]):
         super(JayaBase, self).__init__()
         self.to_evaluate = function_to_evaluate
         self.n = num_solutions
         self.listVars = listVars
         self.cantVars = len(listVars)
         self.minimax = minimaxType['minimize']
+        self.listConstraints = listConstraints
 
     def generatePopulation(self):
         p = np.zeros([self.n, self.cantVars])
-        for row_index, row_value in enumerate(p):
-            for column_item, column_value in enumerate(row_value):
-                p[row_index, column_item] = self.listVars[column_item].get()
+        for row_index in range(self.n):
+            p[row_index] = self.generateSolution()
         return p
+
+    def generateSolution(self):
+        solution = np.zeros(self.cantVars)
+        while 1:
+            for item in range(self.cantVars):
+                solution[item] = self.listVars[item].get()
+            if self.constraintsOK(solution):
+                return solution
+
+    def addConstraint(self, constraintFuntion):
+        self.listConstraints.append(constraintFuntion)
+
+    def constraintsOK(self, solution):
+        for constraints in self.listConstraints:
+            if not constraints(*[solution]):
+                return False
+        return True
 
     def toMaximize(self):
         self.minimax = minimaxType['maximize']
