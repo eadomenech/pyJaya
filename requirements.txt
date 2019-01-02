@@ -1,1 +1,11 @@
+# Numpy
 numpy
+
+# PIL Trabajo con imágenes
+pillow==5.3
+
+# Scipy
+scipy==1.1.0
+
+# Skimage
+scikit-image==0.14.1
