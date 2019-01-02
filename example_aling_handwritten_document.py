@@ -12,10 +12,10 @@ def function(solution):
     img = Image.open('static/handwritten_document.bmp').convert('L')
     a = img.rotate(solution[0])
     # converting a to an ndarray
-    a = misc.fromimage(a)
+    a = np.asarray(a)
     # performing Canny edge filter
     array = feature.canny(a, sigma=3.0).astype(int)
-    image_canny = misc.toimage(array)
+    image_canny = Image.fromarray(array, mode='L')
     cant = []
     for i in range(image_canny.size[1]):
         cant.append(sum(array[i, :]))
