@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from pyjaya.clasic import JayaClasic
 from pyjaya.binary import JayaBinary
+from pyjaya.selfAdadtive import JayaSelfAdadtive
 from pyjaya.utils import FloatRange, IntRange, BinaryRange
 import numpy as np
 
@@ -26,24 +27,32 @@ def himmelblauConstraintTwo(solution):
 
 
 def main():
-    print("RUN: JayaClasic")
-    listVars1 = [FloatRange(-100.0, 100.0) for i in range(2)]
-    listVars2 = [IntRange(0, 50) for i in range(2)]
-    jc = JayaClasic(5, listVars1+listVars2, function1)
-    print(jc.run(100))
-    print("--------------------------------------------------------------")
+    # print("RUN: JayaClasic")
+    # listVars1 = [FloatRange(-100.0, 100.0) for i in range(2)]
+    # listVars2 = [IntRange(0, 50) for i in range(2)]
+    # jc = JayaClasic(5, listVars1+listVars2, function1)
+    # print(jc.run(100))
+    # print("--------------------------------------------------------------")
+    #
+    # print("RUN: JayaBinary")
+    # listVars = [BinaryRange() for i in range(10)]
+    # jc = JayaBinary(5, listVars, function2)
+    # jc.toMaximize()
+    # print(jc.run(100))
+    # print("--------------------------------------------------------------")
+    #
+    # print("RUN: JayaClasic")
+    # print("Minimize the Himmelblau constrained benchmark function.")
+    # listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
+    # jc = JayaClasic(5, listVars, himmelblau)
+    # jc.addConstraint(himmelblauConstraintOne)
+    # jc.addConstraint(himmelblauConstraintTwo)
+    # print(jc.run(100))
+    # print("--------------------------------------------------------------")
 
-    print("RUN: JayaBinary")
-    listVars = [BinaryRange() for i in range(10)]
-    jc = JayaBinary(5, listVars, function2)
-    jc.toMaximize()
-    print(jc.run(100))
-    print("--------------------------------------------------------------")
-
-    print("RUN: JayaClasic")
-    print("Minimize the Himmelblau constrained benchmark function.")
+    print("RUN: Self-adaptive Jaya Algorithm")
     listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
-    jc = JayaClasic(5, listVars, himmelblau)
+    jc = JayaSelfAdadtive(listVars, himmelblau)
     jc.addConstraint(himmelblauConstraintOne)
     jc.addConstraint(himmelblauConstraintTwo)
     print(jc.run(100))
