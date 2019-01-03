@@ -31,6 +31,7 @@ class JayaBase(object):
 
     def toMaximize(self):
         self.minimax = minimaxType['maximize']
+        self.population.toMaximize()
 
     def run(self, number_iterations):
         """Client must define it self"""

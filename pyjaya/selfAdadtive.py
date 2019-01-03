@@ -13,34 +13,36 @@ class JayaSelfAdadtive(JayaBase):
 
     def nextPopulation(self, population):
         numOldSolutions = len(population.solutions)
-        numNewSolutions = round(numOldSolutions*(1 + np.random.rand()-0.5))
+        numNewSolutions = int(round(numOldSolutions*(1 + np.random.rand()-0.5)))
 
         if numNewSolutions == numOldSolutions:
             return population
         else:
             newPopulation = Population(self.minimax)
             if numNewSolutions < numOldSolutions:
+                if numNewSolutions < self.cantVars:
+                    numNewSolutions = self.cantVars
                 if self.minimax:
-                    for solution in population.sorted()[-1:1-numNewSolutions]:
+                    for solution in population.sorted()[-numNewSolutions:]:
                         newPopulation.solution.append(solution)
                 else:
-                    for solution in population.sorted()[0:numNewSolutions]:
+                    for solution in population.sorted()[:numNewSolutions]:
                         newPopulation.solutions.append(solution)
             elif numNewSolutions > numOldSolutions:
                 for solution in population.solutions:
                     newPopulation.solutions.append(solution)
                 if self.minimax:
-                    for solution in population.sorted()[-1:1-numNewSolutions+numOldSolutions]:
+                    for solution in population.sorted()[numOldSolutions-numNewSolutions:]:
                         newPopulation.solution.append(solution)
                 else:
-                    for solution in population.sorted()[0:numNewSolutions-numOldSolutions]:
+                    for solution in population.sorted()[:numNewSolutions-numOldSolutions]:
                         newPopulation.solutions.append(solution)
             return newPopulation
 
     def run(self, numIterations):
         for i in range(numIterations):
             if i > 0:
-                population = self.nextPopulation(self.population)
+                self.population = self.nextPopulation(self.population)
             result = self.population.getBestAndWorst()
             for solution in self.population.solutions:
                 solt = []
@@ -61,9 +63,6 @@ class JayaSelfAdadtive(JayaBase):
                 else:
                     if (auxSolution.value < solution.value) and \
                             (auxSolution.constraintsOK(np.array(solt))):
-                        print("----------------")
-                        print(auxSolution.value)
-                        print(solution.value)
                         solution.setSolution(auxSolution.solution)
 
         return self.population.getBestAndWorst()

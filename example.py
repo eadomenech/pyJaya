@@ -27,30 +27,30 @@ def himmelblauConstraintTwo(solution):
 
 
 def main():
-    # print("RUN: JayaClasic")
-    # listVars1 = [FloatRange(-100.0, 100.0) for i in range(2)]
-    # listVars2 = [IntRange(0, 50) for i in range(2)]
-    # jc = JayaClasic(5, listVars1+listVars2, function1)
-    # print(jc.run(100))
-    # print("--------------------------------------------------------------")
-    #
-    # print("RUN: JayaBinary")
-    # listVars = [BinaryRange() for i in range(10)]
-    # jc = JayaBinary(5, listVars, function2)
-    # jc.toMaximize()
-    # print(jc.run(100))
-    # print("--------------------------------------------------------------")
-    #
-    # print("RUN: JayaClasic")
-    # print("Minimize the Himmelblau constrained benchmark function.")
-    # listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
-    # jc = JayaClasic(5, listVars, himmelblau)
-    # jc.addConstraint(himmelblauConstraintOne)
-    # jc.addConstraint(himmelblauConstraintTwo)
-    # print(jc.run(100))
-    # print("--------------------------------------------------------------")
+    print("RUN: JayaClasic")
+    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    jc = JayaClasic(5, listVars, function1)
+    print(jc.run(100))
+    print("--------------------------------------------------------------")
+
+    print("RUN: JayaBinary")
+    listVars = [BinaryRange() for i in range(10)]
+    jc = JayaBinary(5, listVars, function2)
+    jc.toMaximize()
+    print(jc.run(100))
+    print("--------------------------------------------------------------")
+
+    print("RUN: JayaClasic")
+    print("Minimize the Himmelblau constrained benchmark function.")
+    listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
+    jc = JayaClasic(5, listVars, himmelblau)
+    jc.addConstraint(himmelblauConstraintOne)
+    jc.addConstraint(himmelblauConstraintTwo)
+    print(jc.run(100))
+    print("--------------------------------------------------------------")
 
     print("RUN: Self-adaptive Jaya Algorithm")
+    print("Minimize the Himmelblau constrained benchmark function.")
     listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
     jc = JayaSelfAdadtive(listVars, himmelblau)
     jc.addConstraint(himmelblauConstraintOne)

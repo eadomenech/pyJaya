@@ -3,6 +3,7 @@
 Population class
 """
 from .solution import Solution
+from .consts import *
 import numpy as np
 
 
@@ -21,6 +22,9 @@ class Population():
             solution.generate()
             self.solutions.append(solution)
 
+    def toMaximize(self):
+        self.minimax = minimaxType['maximize']
+
     def sorted(self):
         return sorted(self.solutions, key=lambda solution: solution.value)
 
@@ -38,31 +42,3 @@ class Population():
                 'worst_value': solutionSorted[-1].value,
                 'best_solution': solutionSorted[0].solution,
                 'worst_solution': solutionSorted[-1].solution}
-        # listValores = []
-        # for solution in self.sorted():
-        #     listValores.append(solution.value)
-        # for e, p in enumerate(population):
-        #     if e == 0:
-        #         best_item = worst_item = 0
-        #         best_value = worst_value = self.to_evaluate(*[p])
-        #     else:
-        #         value = self.to_evaluate(*[p])
-        #         if self.minimax:
-        #             if value > best_value:
-        #                 best_item = e
-        #                 best_value = value
-        #             if value < worst_value:
-        #                 worst_item = e
-        #                 worst_value = value
-        #         else:
-        #             if value < best_value:
-        #                 best_item = e
-        #                 best_value = value
-        #             if value > worst_value:
-        #                 worst_item = e
-        #                 worst_value = value
-        # return {
-        #     'best_item': best_item, 'best_value': best_value,
-        #     'worst_item': worst_item, 'worst_value': worst_value,
-        #     'best_solution': population[best_item],
-        #     'worst_solution': population[best_item]}
