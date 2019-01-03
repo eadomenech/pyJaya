@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from pyjaya.clasic import JayaClasic
 from pyjaya.binary import JayaBinary
+from pyjaya.selfAdadtive import JayaSelfAdadtive
 from pyjaya.utils import FloatRange, IntRange, BinaryRange
 import numpy as np
 
@@ -27,9 +28,8 @@ def himmelblauConstraintTwo(solution):
 
 def main():
     print("RUN: JayaClasic")
-    listVars1 = [FloatRange(-100.0, 100.0) for i in range(2)]
-    listVars2 = [IntRange(0, 50) for i in range(2)]
-    jc = JayaClasic(5, listVars1+listVars2, function1)
+    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    jc = JayaClasic(5, listVars, function1)
     print(jc.run(100))
     print("--------------------------------------------------------------")
 
@@ -44,6 +44,15 @@ def main():
     print("Minimize the Himmelblau constrained benchmark function.")
     listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
     jc = JayaClasic(5, listVars, himmelblau)
+    jc.addConstraint(himmelblauConstraintOne)
+    jc.addConstraint(himmelblauConstraintTwo)
+    print(jc.run(100))
+    print("--------------------------------------------------------------")
+
+    print("RUN: Self-adaptive Jaya Algorithm")
+    print("Minimize the Himmelblau constrained benchmark function.")
+    listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
+    jc = JayaSelfAdadtive(listVars, himmelblau)
     jc.addConstraint(himmelblauConstraintOne)
     jc.addConstraint(himmelblauConstraintTwo)
     print(jc.run(100))
