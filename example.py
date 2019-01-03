@@ -2,6 +2,7 @@
 from pyjaya.clasic import JayaClasic
 from pyjaya.binary import JayaBinary
 from pyjaya.selfAdadtive import JayaSelfAdadtive
+from pyjaya.quasiOppositional import JayaQuasiOppositional
 from pyjaya.utils import FloatRange, IntRange, BinaryRange
 import numpy as np
 
@@ -29,33 +30,42 @@ def himmelblauConstraintTwo(solution):
 def main():
     print("RUN: JayaClasic")
     listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    jc = JayaClasic(5, listVars, function1)
-    print(jc.run(100))
+    ja = JayaClasic(5, listVars, function1)
+    print(ja.run(100))
     print("--------------------------------------------------------------")
 
     print("RUN: JayaBinary")
     listVars = [BinaryRange() for i in range(10)]
-    jc = JayaBinary(5, listVars, function2)
-    jc.toMaximize()
-    print(jc.run(100))
+    ja = JayaBinary(5, listVars, function2)
+    ja.toMaximize()
+    print(ja.run(100))
     print("--------------------------------------------------------------")
 
     print("RUN: JayaClasic")
     print("Minimize the Himmelblau constrained benchmark function.")
     listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
-    jc = JayaClasic(5, listVars, himmelblau)
-    jc.addConstraint(himmelblauConstraintOne)
-    jc.addConstraint(himmelblauConstraintTwo)
-    print(jc.run(100))
+    ja = JayaClasic(5, listVars, himmelblau)
+    ja.addConstraint(himmelblauConstraintOne)
+    ja.addConstraint(himmelblauConstraintTwo)
+    print(ja.run(100))
     print("--------------------------------------------------------------")
 
     print("RUN: Self-adaptive Jaya Algorithm")
     print("Minimize the Himmelblau constrained benchmark function.")
     listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
-    jc = JayaSelfAdadtive(listVars, himmelblau)
-    jc.addConstraint(himmelblauConstraintOne)
-    jc.addConstraint(himmelblauConstraintTwo)
-    print(jc.run(100))
+    ja = JayaSelfAdadtive(listVars, himmelblau)
+    ja.addConstraint(himmelblauConstraintOne)
+    ja.addConstraint(himmelblauConstraintTwo)
+    print(ja.run(100))
+    print("--------------------------------------------------------------")
+
+    print("RUN: Quasi-oppositional Based Jaya (QO-Jaya) Algorithm")
+    print("Minimize the Himmelblau constrained benchmark function.")
+    listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
+    ja = JayaQuasiOppositional(5, listVars, himmelblau)
+    ja.addConstraint(himmelblauConstraintOne)
+    ja.addConstraint(himmelblauConstraintTwo)
+    print(ja.run(100))
     print("--------------------------------------------------------------")
 
 
