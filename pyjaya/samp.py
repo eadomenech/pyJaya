@@ -5,7 +5,7 @@ from .solution import Solution
 import numpy as np
 
 
-class JayaClasic(JayaBase):
+class JayaSAMP(JayaBase):
 
     def run(self, number_iterations):
         for i in range(number_iterations):
