@@ -25,14 +25,14 @@ class JayaBinary(JayaBase):
                 auxSolution = Solution(
                     self.listVars, self.functionToEvaluate,
                     self.listConstraints)
-                auxSolution.setSolution(np.array(solt))
+                auxSolution.setSolution(np.asarray(solt))
                 if self.minimax:
                     if (auxSolution.value > solution.value) and \
-                            (auxSolution.constraintsOK(np.array(solt))):
+                            (auxSolution.constraintsOK(np.asarray(solt))):
                         solution = auxSolution
                 else:
                     if (auxSolution.value < solution.value) and \
-                            (auxSolution.constraintsOK(np.array(solt))):
+                            (auxSolution.constraintsOK(np.asarray(solt))):
                         solution.setSolution(auxSolution.solution)
                 newPopulation.solutions.append(solution)
                 self.population = newPopulation

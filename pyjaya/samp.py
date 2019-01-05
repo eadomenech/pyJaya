@@ -32,10 +32,22 @@ class JayaSAMP(JayaBase):
         return population
 
     def run(self, number_iterations):
-        bestValue = self.population.getBestAndWorst()['best_value']
+        result = self.population.getBestAndWorst()
+        bestValue = result['best_value']
         for i in range(number_iterations):
             if i == 0:
                 m = 2
+                subPopulations = self.population.divideInTo(m)
+                for p_item, p_value in enumerate(subPopulations):
+                    p_value = self.sprint(p_value)
+                newPopulation = Population(self.minimax)
+                newPopulation.merge(subPopulations)
+                if self.minimax:
+                    if newPopulation.getBestAndWorst()['best_value'] > self.population.getBestAndWorst()['best_value']:
+                        self.population = newPopulation
+                else:
+                    if newPopulation.getBestAndWorst()['best_value'] < self.population.getBestAndWorst()['best_value']:
+                        self.population = newPopulation
             else:
                 if self.minimax:
                     bV = self.population.getBestAndWorst()['best_value']
