@@ -42,3 +42,20 @@ class Population():
                 'worst_value': solutionSorted[-1].value,
                 'best_solution': solutionSorted[0].solution,
                 'worst_solution': solutionSorted[-1].solution}
+
+    def divideInTo(self, n=2):
+        populations = []
+        q, r = divmod(len(self.solutions), n)
+        indices = [q*i + min(i, r) for i in range(n+1)]
+        subLists = [self.sorted()[indices[i]:indices[i+1]] for i in range(n)]
+        for miniList in subLists:
+            newPopulation = Population(self.minimax)
+            newPopulation.solutions = miniList
+            populations.append(newPopulation)
+        return populations
+
+    def merge(self, listPopulation):
+        listSolutions = []
+        for p in listPopulation:
+            listSolutions += p.solutions
+        self.solutions = listSolutions

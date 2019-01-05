@@ -32,48 +32,49 @@ def main():
     print("RUN: JayaClasic")
     listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
     ja = JayaClasic(5, listVars, function1)
-    print(ja.run(100))
+    print(ja.run(1000))
     print("--------------------------------------------------------------")
-
-    print("RUN: JayaBinary")
-    listVars = [BinaryRange() for i in range(10)]
-    ja = JayaBinary(5, listVars, function2)
-    ja.toMaximize()
-    print(ja.run(100))
-    print("--------------------------------------------------------------")
-
-    print("RUN: JayaClasic")
-    print("Minimize the Himmelblau constrained benchmark function.")
-    listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
-    ja = JayaClasic(5, listVars, himmelblau)
-    ja.addConstraint(himmelblauConstraintOne)
-    ja.addConstraint(himmelblauConstraintTwo)
-    print(ja.run(100))
-    print("--------------------------------------------------------------")
-
-    print("RUN: Self-adaptive Jaya Algorithm")
-    print("Minimize the Himmelblau constrained benchmark function.")
-    listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
-    ja = JayaSelfAdadtive(listVars, himmelblau)
-    ja.addConstraint(himmelblauConstraintOne)
-    ja.addConstraint(himmelblauConstraintTwo)
-    print(ja.run(100))
-    print("--------------------------------------------------------------")
-
-    print("RUN: Quasi-oppositional Based Jaya (QO-Jaya) Algorithm")
-    print("Minimize the Himmelblau constrained benchmark function.")
-    listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
-    ja = JayaQuasiOppositional(5, listVars, himmelblau)
-    ja.addConstraint(himmelblauConstraintOne)
-    ja.addConstraint(himmelblauConstraintTwo)
-    print(ja.run(100))
-    print("--------------------------------------------------------------")
+    #
+    # print("RUN: JayaBinary")
+    # listVars = [BinaryRange() for i in range(10)]
+    # ja = JayaBinary(5, listVars, function2)
+    # ja.toMaximize()
+    # print(ja.run(100))
+    # print("--------------------------------------------------------------")
+    #
+    # print("RUN: JayaClasic")
+    # print("Minimize the Himmelblau constrained benchmark function.")
+    # listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
+    # ja = JayaClasic(5, listVars, himmelblau)
+    # ja.addConstraint(himmelblauConstraintOne)
+    # ja.addConstraint(himmelblauConstraintTwo)
+    # print(ja.run(100))
+    # print("--------------------------------------------------------------")
+    #
+    # print("RUN: Self-adaptive Jaya Algorithm")
+    # print("Minimize the Himmelblau constrained benchmark function.")
+    # listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
+    # ja = JayaSelfAdadtive(listVars, himmelblau)
+    # ja.addConstraint(himmelblauConstraintOne)
+    # ja.addConstraint(himmelblauConstraintTwo)
+    # print(ja.run(100))
+    # print("--------------------------------------------------------------")
+    #
+    # print("RUN: Quasi-oppositional Based Jaya (QO-Jaya) Algorithm")
+    # print("Minimize the Himmelblau constrained benchmark function.")
+    # listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
+    # ja = JayaQuasiOppositional(5, listVars, himmelblau)
+    # ja.addConstraint(himmelblauConstraintOne)
+    # ja.addConstraint(himmelblauConstraintTwo)
+    # print(ja.run(100))
+    # print("--------------------------------------------------------------")
 
     print("RUN: Self-adaptive Multi-population (SAMP) Jaya Algorithm")
     listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
     ja = JayaSAMP(5, listVars, function1)
-    print(ja.run(100))
+    print(ja.run(1000))
     print("--------------------------------------------------------------")
+
 
 if __name__ == '__main__':
     main()
