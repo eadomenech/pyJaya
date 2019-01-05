@@ -44,11 +44,11 @@ class JayaQuasiOppositional(JayaBase):
         for i in range(numIterations):
             self.population = self.newPopulation()
             result = self.population.getBestAndWorst()
+            r1 = np.random.rand(self.cantVars)
+            r2 = np.random.rand(self.cantVars)
             for solution in self.population.solutions:
                 solt = []
                 for v_item, v_value in enumerate(solution.solution):
-                    r1 = np.random.rand(self.cantVars)
-                    r2 = np.random.rand(self.cantVars)
                     solt.append(self.listVars[v_item].convert(
                         (v_value+r1[v_item] * (result['best_solution'][v_item] - abs(v_value)) - r2[v_item] * (result['worst_solution'][v_item]-abs(v_value)))
                     ))
