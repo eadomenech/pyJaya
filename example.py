@@ -4,6 +4,7 @@ from pyjaya.binary import JayaBinary
 from pyjaya.selfAdadtive import JayaSelfAdadtive
 from pyjaya.quasiOppositional import JayaQuasiOppositional
 from pyjaya.samp import JayaSAMP
+from pyjaya.sampe import JayaSAMPE
 from pyjaya.utils import FloatRange, IntRange, BinaryRange
 import numpy as np
 
@@ -72,6 +73,12 @@ def main():
     print("RUN: Self-adaptive Multi-population (SAMP) Jaya Algorithm")
     listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
     ja = JayaSAMP(20, listVars, function1)
+    print(ja.run(100))
+    print("--------------------------------------------------------------")
+
+    print("RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya Algorithm")
+    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    ja = JayaSAMPE(20, listVars, function1)
     print(ja.run(100))
     print("--------------------------------------------------------------")
 

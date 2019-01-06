@@ -5,7 +5,7 @@ from .solution import Solution
 import numpy as np
 
 
-class JayaSAMP(JayaBase):
+class JayaSAMPE(JayaBase):
 
     def sprint(self, population):
         result = population.getBestAndWorst()
@@ -37,7 +37,7 @@ class JayaSAMP(JayaBase):
         for i in range(number_iterations):
             if i == 0:
                 m = 2
-                subPopulations = self.population.divideInTo(m)
+                subPopulations = self.population.divideInToWithElitist(m)
                 for p in subPopulations:
                     p = self.sprint(p)
                 newPopulation = Population(self.minimax)
@@ -57,7 +57,7 @@ class JayaSAMP(JayaBase):
                         bestValue = bV
                     elif m > 1:
                         m -= 1
-                    subPopulations = self.population.divideInTo(m)
+                    subPopulations = self.population.divideInToWithElitist(m)
                     for p in subPopulations:
                         p = self.sprint(p)
                     newPopulation = Population(self.minimax)
@@ -72,7 +72,7 @@ class JayaSAMP(JayaBase):
                         bestValue = bV
                     elif m > 1:
                         m -= 1
-                    subPopulations = self.population.divideInTo(m)
+                    subPopulations = self.population.divideInToWithElitist(m)
                     for p in subPopulations:
                         p = self.sprint(p)
                     newPopulation = Population(self.minimax)
