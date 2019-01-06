@@ -18,7 +18,7 @@ class JayaBinary(JayaBase):
                 solt = []
                 for v_item, v_value in enumerate(solution.solution):
                     v = v_value+r1[v_item] * (result['best_solution'][v_item] - abs(v_value)) - r2[v_item] * (result['worst_solution'][v_item]-abs(v_value))
-                    if np.random.rand() > math.tanh(abs(v)):
+                    if math.tanh(abs(v)) > 0.5:
                         solt.append(1.0)
                     else:
                         solt.append(0.0)
@@ -38,27 +38,3 @@ class JayaBinary(JayaBase):
                 self.population = newPopulation
 
         return self.population.getBestAndWorst()
-
-        # for i in range(number_iterations):
-        #     population_aux = population.copy()
-        #     for p in population_aux:
-        #         r1 = np.random.rand(self.cantVars)
-        #         r2 = np.random.rand(self.cantVars)
-        #         for v_item, v_value in enumerate(p):
-        #             p[v_item] = v_value+r1[v_item]*(population[result['best_item']][v_item]-abs(v_value))-r2[v_item]*(population[result['worst_item']][v_item]-abs(v_value))
-        #             if np.random.rand() < math.tanh(abs(p[v_item])):
-        #                 p[v_item] = 1.0
-        #             else:
-        #                 p[v_item] = 0.0
-        #     for x in range(self.n):
-        #         if self.minimax:
-        #             if (
-        #                     self.to_evaluate(population_aux[x]) >
-        #                     self.to_evaluate(population[x])) and self.constraintsOK(population_aux[x]):
-        #                 population[x] = population_aux[x]
-        #         else:
-        #             if (
-        #                     self.to_evaluate(population_aux[x]) <
-        #                     self.to_evaluate(population[x])) and self.constraintsOK(population_aux[x]):
-        #                 population[x] = population_aux[x]
-        # return self.getBestAndWorst(population)

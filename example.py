@@ -38,7 +38,7 @@ def main():
 
     print("RUN: JayaBinary")
     listVars = [BinaryRange() for i in range(10)]
-    ja = JayaBinary(20, listVars, function2)
+    ja = JayaBinary(5, listVars, function2)
     ja.toMaximize()
     print(ja.run(100))
     print("--------------------------------------------------------------")
