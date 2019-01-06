@@ -33,7 +33,7 @@ def main():
     print("RUN: JayaClasic")
     listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
     ja = JayaClasic(20, listVars, function1)
-    print(ja.run(1000))
+    print(ja.run(100))
     print("--------------------------------------------------------------")
 
     print("RUN: JayaBinary")
@@ -44,29 +44,20 @@ def main():
     print("--------------------------------------------------------------")
 
     print("RUN: JayaClasic")
-    print("Minimize the Himmelblau constrained benchmark function.")
-    listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
-    ja = JayaClasic(20, listVars, himmelblau)
-    ja.addConstraint(himmelblauConstraintOne)
-    ja.addConstraint(himmelblauConstraintTwo)
+    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    ja = JayaClasic(20, listVars, function1)
     print(ja.run(100))
     print("--------------------------------------------------------------")
 
     print("RUN: Self-adaptive Jaya Algorithm")
-    print("Minimize the Himmelblau constrained benchmark function.")
-    listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
-    ja = JayaSelfAdadtive(listVars, himmelblau)
-    ja.addConstraint(himmelblauConstraintOne)
-    ja.addConstraint(himmelblauConstraintTwo)
+    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    ja = JayaSelfAdadtive(listVars, function1)
     print(ja.run(100))
     print("--------------------------------------------------------------")
 
     print("RUN: Quasi-oppositional Based Jaya (QO-Jaya) Algorithm")
-    print("Minimize the Himmelblau constrained benchmark function.")
-    listVars = [FloatRange(-5.0, 5.0) for i in range(2)]
-    ja = JayaQuasiOppositional(20, listVars, himmelblau)
-    ja.addConstraint(himmelblauConstraintOne)
-    ja.addConstraint(himmelblauConstraintTwo)
+    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    ja = JayaQuasiOppositional(20, listVars, function1)
     print(ja.run(100))
     print("--------------------------------------------------------------")
 
