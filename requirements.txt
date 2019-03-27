@@ -8,4 +8,4 @@ pillow==5.3
 scipy==1.1.0
 
 # Skimage
-scikit-image==0.14.1
+scikit-image

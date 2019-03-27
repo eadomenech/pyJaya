@@ -35,7 +35,7 @@ def main():
     # jc = JayaClasic(20, listVars, function)
     jc = JayaSAMPE(20, listVars, function)
     jc.toMaximize()
-    result = jc.run(20)
+    result = jc.run(10)
     print(result)
     print("--------------------------------------------------------------")
     print('It took', time.time()-start, 'seconds.')

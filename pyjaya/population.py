@@ -77,3 +77,4 @@ class Population():
         for p in listPopulation:
             listSolutions += p.solutions
         self.solutions = listSolutions
+        print("merge", self.solutions)

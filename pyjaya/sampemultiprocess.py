@@ -3,6 +3,7 @@ from .base import JayaBase
 from .population import Population
 from .solution import Solution
 from multiprocessing import Process, Queue, current_process, freeze_support
+from multiprocessing import Pool
 import numpy as np
 
 
@@ -10,8 +11,12 @@ class JayaSAMPE(JayaBase):
 
     def sprint(self, population):
         result = population.getBestAndWorst()
+        solutions = list()
+
+        np.random.seed()
         r1 = np.random.rand(self.cantVars)
         r2 = np.random.rand(self.cantVars)
+
         for solution in population.solutions:
             solt = []
             for v_item, v_value in enumerate(solution.solution):
@@ -25,41 +30,34 @@ class JayaSAMPE(JayaBase):
             if self.minimax:
                 if (auxSolution.value > solution.value) and \
                         (auxSolution.constraintsOK(np.array(solt))):
-                    solution = auxSolution
+                    solutions.append(auxSolution)
+                else:
+                    solutions.append(solution)
             else:
                 if (auxSolution.value < solution.value) and \
                         (auxSolution.constraintsOK(np.array(solt))):
-                    solution.setSolution(auxSolution.solution)
-        return population
+                    solutions.append(auxSolution)
+                else:
+                    solutions.append(solution)
+        newPop = Population(self.minimax)
+        newPop.solutions = solutions
+        print("sprint", solutions)
+        return newPop
 
     @staticmethod
-    def worker(input, output):
-        for sampe, population in iter(input.get, 'STOP'):
-            result = sampe.sprint(population)
-            output.put(result)
+    def worker(sampe, population):
+        return sampe.sprint(population)
 
     def generate(self, m):
-        NUMBER_OF_PROCESSES = m
-
-        input_queue = Queue()
-        output_queue = Queue()
-
-        subPopulations = list()
-        TASKS = [(self, p) for p in self.population.divideInToWithElitist(m)]
-        [input_queue.put(e) for e in TASKS]
-
-        for i in range(NUMBER_OF_PROCESSES):
-            Process(
-                target=JayaSAMPE.worker, args=(
-                    input_queue, output_queue)).start()
-
-        # Get results of sprint
-        for i in range(len(TASKS)):
-            subPopulations.append(output_queue.get())
-
-        # Tell child processes to stop
-        for i in range(NUMBER_OF_PROCESSES):
-            input_queue.put('STOP')
+        entrada = self.population.divideInToWithElitist(m)
+        print("     ### entradas")
+        [print(e.solutions) for e in entrada]
+        print("     ###")
+        pool = Pool(processes=3)
+        results = [
+            pool.apply_async(
+                JayaSAMPE.worker, args=(self, x)) for x in entrada]
+        subPopulations = [p.get() for p in results]
 
         newPopulation = Population(self.minimax)
         newPopulation.merge(subPopulations)
@@ -78,7 +76,9 @@ class JayaSAMPE(JayaBase):
         bestValue = result['best_value']
         m = 2
         for i in range(number_iterations):
+            print(i, self.population.solutions)
             if i == 0:
+                print("Generaring 2")
                 self.generate(2)
             else:
                 if self.minimax:
@@ -87,7 +87,7 @@ class JayaSAMPE(JayaBase):
                         if m < self.numSolutions:
                             m += 1
                         bestValue = bV
-                    elif m > 1:
+                    elif m > 2:
                         m -= 1
                 else:
                     bV = self.population.getBestAndWorst()['best_value']
@@ -95,7 +95,9 @@ class JayaSAMPE(JayaBase):
                         if m < self.numSolutions:
                             m += 1
                         bestValue = bV
-                    elif m > 1:
+                    elif m > 2:
                         m -= 1
+                print("Generaring", m)
                 self.generate(m)
+                print("done", m)
         return self.population.getBestAndWorst()
