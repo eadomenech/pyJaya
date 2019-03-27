@@ -7,6 +7,12 @@ import numpy as np
 
 class Solution():
 
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return str(self.value)
+
     def __init__(self, listVars, functionToEvaluate, listConstraints=[]):
 
         self.cantVars = len(listVars)

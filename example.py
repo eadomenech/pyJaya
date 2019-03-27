@@ -4,7 +4,8 @@ from pyjaya.binary import JayaBinary
 from pyjaya.selfAdadtive import JayaSelfAdadtive
 from pyjaya.quasiOppositional import JayaQuasiOppositional
 from pyjaya.samp import JayaSAMP
-from pyjaya.sampe import JayaSAMPE
+# from pyjaya.sampe import JayaSAMPE
+from pyjaya.sampemultiprocess import JayaSAMPE
 from pyjaya.utils import FloatRange, IntRange, BinaryRange
 import numpy as np
 
@@ -30,47 +31,47 @@ def himmelblauConstraintTwo(solution):
 
 
 def main():
-    print("RUN: JayaClasic")
-    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    ja = JayaClasic(20, listVars, function1)
-    print(ja.run(100))
-    print("--------------------------------------------------------------")
-
-    print("RUN: JayaBinary")
-    listVars = [BinaryRange() for i in range(10)]
-    ja = JayaBinary(5, listVars, function2)
-    ja.toMaximize()
-    print(ja.run(100))
-    print("--------------------------------------------------------------")
-
-    print("RUN: JayaClasic")
-    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    ja = JayaClasic(20, listVars, function1)
-    print(ja.run(100))
-    print("--------------------------------------------------------------")
-
-    print("RUN: Self-adaptive Jaya Algorithm")
-    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    ja = JayaSelfAdadtive(listVars, function1)
-    print(ja.run(100))
-    print("--------------------------------------------------------------")
-
-    print("RUN: Quasi-oppositional Based Jaya (QO-Jaya) Algorithm")
-    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    ja = JayaQuasiOppositional(20, listVars, function1)
-    print(ja.run(100))
-    print("--------------------------------------------------------------")
-
-    print("RUN: Self-adaptive Multi-population (SAMP) Jaya Algorithm")
-    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    ja = JayaSAMP(20, listVars, function1)
-    print(ja.run(100))
-    print("--------------------------------------------------------------")
+    # print("RUN: JayaClasic")
+    # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    # ja = JayaClasic(20, listVars, function1)
+    # print(ja.run(100))
+    # print("--------------------------------------------------------------")
+    #
+    # print("RUN: JayaBinary")
+    # listVars = [BinaryRange() for i in range(10)]
+    # ja = JayaBinary(5, listVars, function2)
+    # ja.toMaximize()
+    # print(ja.run(100))
+    # print("--------------------------------------------------------------")
+    #
+    # print("RUN: JayaClasic")
+    # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    # ja = JayaClasic(20, listVars, function1)
+    # print(ja.run(100))
+    # print("--------------------------------------------------------------")
+    #
+    # print("RUN: Self-adaptive Jaya Algorithm")
+    # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    # ja = JayaSelfAdadtive(listVars, function1)
+    # print(ja.run(100))
+    # print("--------------------------------------------------------------")
+    #
+    # print("RUN: Quasi-oppositional Based Jaya (QO-Jaya) Algorithm")
+    # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    # ja = JayaQuasiOppositional(20, listVars, function1)
+    # print(ja.run(100))
+    # print("--------------------------------------------------------------")
+    #
+    # print("RUN: Self-adaptive Multi-population (SAMP) Jaya Algorithm")
+    # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    # ja = JayaSAMP(20, listVars, function1)
+    # print(ja.run(100))
+    # print("--------------------------------------------------------------")
 
     print("RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya Algorithm")
-    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    ja = JayaSAMPE(20, listVars, function1)
-    print(ja.run(100))
+    listVars = [FloatRange(-100.0, 100.0) for i in range(20)]
+    ja = JayaSAMPE(100, listVars, function1)
+    print(ja.run(80))
     print("--------------------------------------------------------------")
 
 
