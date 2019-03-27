@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 from pyjaya.clasic import JayaClasic
+# from pyjaya.sampe import JayaSAMPE
+from pyjaya.sampemultiprocess import JayaSAMPE
 from pyjaya.utils import FloatRange
 import numpy as np
 from PIL import Image
 from skimage import feature
+import time
+import multiprocessing as mp
 
 
 def function(solution):
@@ -25,13 +29,16 @@ def function(solution):
 
 
 def main():
+    start = time.time()
     print("RUN: JayaClasic")
     listVars = [FloatRange(0.0, 180.0)]
-    jc = JayaClasic(20, listVars, function)
+    # jc = JayaClasic(20, listVars, function)
+    jc = JayaSAMPE(20, listVars, function)
     jc.toMaximize()
     result = jc.run(20)
     print(result)
     print("--------------------------------------------------------------")
+    print('It took', time.time()-start, 'seconds.')
     img = Image.open(
         'static/IMG_0039.png'
     ).convert('L').rotate(result['best_solution']).save('static/aling_handwritten_document.png')
