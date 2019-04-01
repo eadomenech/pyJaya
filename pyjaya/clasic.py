@@ -33,4 +33,4 @@ class JayaClasic(JayaBase):
                             (auxSolution.constraintsOK(np.array(solt))):
                         solution.setSolution(auxSolution.solution)
 
-        return self.population.getBestAndWorst()
+        return self.population

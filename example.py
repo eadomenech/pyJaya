@@ -31,11 +31,11 @@ def himmelblauConstraintTwo(solution):
 
 
 def main():
-    # print("RUN: JayaClasic")
-    # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    # ja = JayaClasic(20, listVars, function1)
-    # print(ja.run(100))
-    # print("--------------------------------------------------------------")
+    print("RUN: JayaClasic")
+    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    ja = JayaClasic(20, listVars, function1)
+    print(ja.run(100).getBestAndWorst())
+    print("--------------------------------------------------------------")
     #
     # print("RUN: JayaBinary")
     # listVars = [BinaryRange() for i in range(10)]
@@ -68,11 +68,11 @@ def main():
     # print(ja.run(100))
     # print("--------------------------------------------------------------")
 
-    print("RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya Algorithm")
-    listVars = [IntRange(0, 100) for i in range(2)]
-    ja = JayaSAMPE(5, listVars, function2)
-    print(ja.run(20))
-    print("--------------------------------------------------------------")
+    # print("RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya Algorithm")
+    # listVars = [IntRange(0, 100) for i in range(2)]
+    # ja = JayaSAMPE(5, listVars, function2)
+    # print(ja.run(20))
+    # print("--------------------------------------------------------------")
 
 
 if __name__ == '__main__':

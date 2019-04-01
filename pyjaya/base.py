@@ -2,6 +2,7 @@
 from .consts import *
 import numpy as np
 from .population import Population
+import copy
 
 
 class JayaBase(object):
@@ -17,11 +18,10 @@ class JayaBase(object):
         self.minimax = minimaxType['minimize']
         self.listConstraints = listConstraints
 
-        self.population = self.generatePopulation()
-        # if population is None:
-        #     self.population = self.generatePopulation()
-        # else:
-        #     self.population = population
+        if population is None:
+            self.population = self.generatePopulation()
+        else:
+            self.population = copy.deepcopy(population)
 
     def generatePopulation(self):
         population = Population(self.minimax)
@@ -36,6 +36,9 @@ class JayaBase(object):
     def toMaximize(self):
         self.minimax = minimaxType['maximize']
         self.population.toMaximize()
+
+    def getBestAndWorst(self):
+        return self.population.getBestAndWorst()
 
     def run(self, number_iterations):
         """Client must define it self"""
