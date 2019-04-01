@@ -8,7 +8,7 @@ class JayaBase(object):
 
     def __init__(
             self, numSolutions, listVars, functionToEvaluate,
-            listConstraints=[]):
+            listConstraints=[], population=None):
         super(JayaBase, self).__init__()
         self.functionToEvaluate = functionToEvaluate
         self.numSolutions = numSolutions
@@ -18,6 +18,10 @@ class JayaBase(object):
         self.listConstraints = listConstraints
 
         self.population = self.generatePopulation()
+        # if population is None:
+        #     self.population = self.generatePopulation()
+        # else:
+        #     self.population = population
 
     def generatePopulation(self):
         population = Population(self.minimax)

@@ -11,7 +11,7 @@ class Solution():
         return self.__str__()
 
     def __str__(self):
-        return str(self.value)
+        return str(self.solution)
 
     def __init__(self, listVars, functionToEvaluate, listConstraints=[]):
 
@@ -32,6 +32,7 @@ class Solution():
                 self.solution = solution
                 break
         self.value = self.evaluate()
+        # print("solution.generate:", self.solution)
 
     def constraintsOK(self, solution):
         for constraints in self.listConstraints:

@@ -30,6 +30,7 @@ class IntRange(NumberRange):
             raise NotImplementedError("The numbers should be integer")
 
     def get(self):
+        np.random.seed()
         return int((self.major-self.minor) * np.random.rand() + self.minor)
 
     def convert(self, value):
@@ -50,6 +51,7 @@ class FloatRange(NumberRange):
             raise NotImplementedError("The numbers should be float")
 
     def get(self):
+        np.random.seed()
         return (self.major-self.minor) * np.random.rand() + self.minor
 
     def convert(self, value):
@@ -67,6 +69,7 @@ class BinaryRange(NumberRange):
         pass
 
     def get(self):
+        np.random.seed()
         return np.random.randint(2)
 
     def convert(self, value):

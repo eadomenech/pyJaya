@@ -10,6 +10,8 @@ class JayaClasic(JayaBase):
     def run(self, number_iterations):
         for i in range(number_iterations):
             result = self.population.getBestAndWorst()
+
+            np.random.seed()
             r1 = np.random.rand(self.cantVars)
             r2 = np.random.rand(self.cantVars)
             for solution in self.population.solutions:

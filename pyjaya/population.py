@@ -21,12 +21,15 @@ class Population():
                 listVars, functionToEvaluate, listConstraints)
             solution.generate()
             self.solutions.append(solution)
+        # print("Solutios generate:", self.solutions)
 
     def toMaximize(self):
         self.minimax = minimaxType['maximize']
 
     def sorted(self):
-        return sorted(self.solutions, key=lambda solution: solution.value)
+        return sorted(
+            self.solutions, reverse=self.minimax,
+            key=lambda solution: solution.value)
 
     def getBestAndWorst(self):
         solutionSorted = self.sorted()
@@ -76,5 +79,7 @@ class Population():
         listSolutions = []
         for p in listPopulation:
             listSolutions += p.solutions
-        self.solutions = listSolutions
-        print("merge", self.solutions)
+        self.solutions = sorted(
+            listSolutions, reverse=self.minimax,
+            key=lambda solution: solution.value)
+        # print("merge", self.solutions)

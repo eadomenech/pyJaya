@@ -69,9 +69,9 @@ def main():
     # print("--------------------------------------------------------------")
 
     print("RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya Algorithm")
-    listVars = [FloatRange(-100.0, 100.0) for i in range(20)]
-    ja = JayaSAMPE(100, listVars, function1)
-    print(ja.run(80))
+    listVars = [IntRange(0, 100) for i in range(2)]
+    ja = JayaSAMPE(5, listVars, function2)
+    print(ja.run(20))
     print("--------------------------------------------------------------")
 
 

@@ -12,7 +12,7 @@ import multiprocessing as mp
 
 def function(solution):
     # opening the image and converting it to grayscale
-    img = Image.open('static/IMG_0039.png').convert('L')
+    img = Image.open('static/handwritten_document.png').convert('L')
     a = img.rotate(solution[0])
     # converting a to an ndarray
     a = np.asarray(a)
@@ -33,14 +33,14 @@ def main():
     print("RUN: JayaClasic")
     listVars = [FloatRange(0.0, 180.0)]
     # jc = JayaClasic(20, listVars, function)
-    jc = JayaSAMPE(20, listVars, function)
+    jc = JayaSAMPE(10, listVars, function)
     jc.toMaximize()
     result = jc.run(10)
     print(result)
     print("--------------------------------------------------------------")
     print('It took', time.time()-start, 'seconds.')
     img = Image.open(
-        'static/IMG_0039.png'
+        'static/handwritten_document.png'
     ).convert('L').rotate(result['best_solution']).save('static/aling_handwritten_document.png')
 
 
