@@ -10,16 +10,24 @@ class JayaClasic(JayaBase):
     def run(self, number_iterations):
         for i in range(number_iterations):
             result = self.population.getBestAndWorst()
-
             np.random.seed()
             r1 = np.random.rand(self.cantVars)
             r2 = np.random.rand(self.cantVars)
             for solution in self.population.solutions:
                 solt = []
                 for v_item, v_value in enumerate(solution.solution):
+                    d = {}
                     solt.append(self.listVars[v_item].convert(
-                        (v_value+r1[v_item] * (result['best_solution'][v_item] - abs(v_value)) - r2[v_item] * (result['worst_solution'][v_item]-abs(v_value)))
+                        (v_value + r1[v_item] * (result['best_solution'][v_item] - abs(v_value)) - r2[v_item] * (result['worst_solution'][v_item]-abs(v_value)))
                     ))
+                    # d['v_value'] = v_value
+                    # d['r1[v_item]'] = r1[v_item]
+                    # d['result[best_solution][v_item]'] = result['best_solution'][v_item]
+                    # d['abs(v_value)'] = abs(v_value)
+                    # d['r2[v_item]'] = r2[v_item]
+                    # d['(result[worst_solution][v_item]'] = result['worst_solution'][v_item]
+                    # print("Formula: ", d)
+                    # print("Solt: ", solt)
                 auxSolution = Solution(
                     self.listVars, self.functionToEvaluate,
                     self.listConstraints)
@@ -27,7 +35,7 @@ class JayaClasic(JayaBase):
                 if self.minimax:
                     if (auxSolution.value > solution.value) and \
                             (auxSolution.constraintsOK(np.array(solt))):
-                        solution = auxSolution
+                        solution.setSolution(auxSolution.solution)
                 else:
                     if (auxSolution.value < solution.value) and \
                             (auxSolution.constraintsOK(np.array(solt))):

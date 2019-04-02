@@ -11,49 +11,18 @@ import numpy as np
 class JayaSAMPE(JayaBase):
 
     def sprint(self, population):
-        result = population.getBestAndWorst()
-        solutions = list()
+        # result = population.getBestAndWorst()
+        # solutions = list()
 
         numSolutions = len(population.solutions)
-        jaya_intance = JayaClasic(
+        jaya_clasic = JayaClasic(
             numSolutions, self.listVars, self.functionToEvaluate,
             population=population)
         if self.minimax:
-            jaya_intance.toMaximize()
-        jaya_intance.run(1)
+            jaya_clasic.toMaximize()
 
-        # np.random.seed()
-        # r1 = np.random.rand(self.cantVars)
-        # r2 = np.random.rand(self.cantVars)
-        #
-        # for solution in population.solutions:
-        #     solt = []
-        #     for v_item, v_value in enumerate(solution.solution):
-        #         solt.append(self.listVars[v_item].convert(
-        #             (v_value+r1[v_item] * (result['best_solution'][v_item] - abs(v_value)) - r2[v_item] * (result['worst_solution'][v_item]-abs(v_value)))
-        #         ))
-        #     auxSolution = Solution(
-        #         self.listVars, self.functionToEvaluate,
-        #         self.listConstraints)
-        #     auxSolution.setSolution(np.array(solt))
-        #     if self.minimax:
-        #         if (auxSolution.value > solution.value) and \
-        #                 (auxSolution.constraintsOK(np.array(solt))):
-        #             solutions.append(auxSolution)
-        #         else:
-        #             solutions.append(solution)
-        #     else:
-        #         if (auxSolution.value < solution.value) and \
-        #                 (auxSolution.constraintsOK(np.array(solt))):
-        #             solutions.append(auxSolution)
-        #         else:
-        #             solutions.append(solution)
-        # newPop = Population(self.minimax)
-        # newPop.solutions = solutions
-        # print("sprint", solutions)
-        # return newPop
-        print("worker", jaya_intance.population.solutions)
-        return jaya_intance.population
+        population = jaya_clasic.run(1)
+        return population
 
     @staticmethod
     def worker(sampe, population):
@@ -61,9 +30,9 @@ class JayaSAMPE(JayaBase):
 
     def generate(self, m):
         entrada = self.population.divideInToWithElitist(m)
-        print("     ### entradas")
-        [print(e.solutions) for e in entrada]
-        print("     ###")
+        # print("     ### entradas (luego de la division con elitismo)")
+        # [print(e.solutions) for e in entrada]
+        # print("     ###")
         pool = Pool(processes=3)
         results = [
             pool.apply_async(
@@ -84,16 +53,15 @@ class JayaSAMPE(JayaBase):
         #         self.population = newPopulation
         # newPopulation.getBestAndWorst()
         self.population = newPopulation
-        print("Clasic", self.population.solutions)
 
     def run(self, number_iterations):
         result = self.population.getBestAndWorst()
         bestValue = result['best_value']
         m = 2
         for i in range(number_iterations):
-            print(i, self.population.solutions)
+            # print(i, self.population.solutions)
             if i == 0:
-                print("Generaring 2")
+                # print("Generaring", m)
                 self.generate(2)
             else:
                 if self.minimax:
@@ -112,7 +80,7 @@ class JayaSAMPE(JayaBase):
                         bestValue = bV
                     elif m > 2:
                         m -= 1
-                print("Generaring", m)
+                # print("Generaring", m)
                 self.generate(m)
-                print("done", m)
+                # print("done", m)
         return self.population.getBestAndWorst()

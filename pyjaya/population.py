@@ -5,6 +5,7 @@ Population class
 from .solution import Solution
 from .consts import *
 import numpy as np
+import copy
 
 
 class Population():
@@ -71,7 +72,7 @@ class Population():
             newPopulation.solutions = miniList
             populations.append(newPopulation)
         newPopulation = Population(self.minimax)
-        newPopulation.solutions = populations[0].solutions
+        newPopulation.solutions = copy.deepcopy(populations[0].solutions)
         populations.append(newPopulation)
         return populations
 

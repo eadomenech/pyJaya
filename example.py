@@ -10,11 +10,11 @@ from pyjaya.utils import FloatRange, IntRange, BinaryRange
 import numpy as np
 
 
-def function1(solution):
+def sumaDeCuadrados(solution):
     return sum(np.asarray(solution)**2)
 
 
-def function2(solution):
+def suma(solution):
     return sum(solution)
 
 
@@ -33,7 +33,7 @@ def himmelblauConstraintTwo(solution):
 def main():
     print("RUN: JayaClasic")
     listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    ja = JayaClasic(20, listVars, function1)
+    ja = JayaClasic(2, listVars, sumaDeCuadrados)
     print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")
     #
@@ -69,9 +69,9 @@ def main():
     # print("--------------------------------------------------------------")
 
     # print("RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya Algorithm")
-    # listVars = [IntRange(0, 100) for i in range(2)]
-    # ja = JayaSAMPE(5, listVars, function2)
-    # print(ja.run(20))
+    # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    # ja = JayaSAMPE(20, listVars, sumaDeCuadrados)
+    # print(ja.run(300))
     # print("--------------------------------------------------------------")
 
 
