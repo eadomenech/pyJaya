@@ -82,3 +82,6 @@ class Population():
         self.solutions = sorted(
             listSolutions, reverse=self.minimax,
             key=lambda solution: solution.value)
+    
+    def size(self):
+        return len(self.solutions)

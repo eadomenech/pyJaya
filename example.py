@@ -10,7 +10,7 @@ from pyjaya.utils import FloatRange, IntRange, BinaryRange
 import numpy as np
 
 
-def sumaDeCuadrados(solution):
+def sumOfSquares(solution):
     return sum(np.asarray(solution)**2)
 
 
@@ -34,7 +34,7 @@ def main():
     print("Minimizing sum of squares using float numbers")
     print("RUN: JayaClasic")
     listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    ja = JayaClasic(20, listVars, sumaDeCuadrados)
+    ja = JayaClasic(20, listVars, sumOfSquares)
     print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")
     
@@ -45,34 +45,29 @@ def main():
     ja.toMaximize()
     print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")
-    #
-    # print("RUN: JayaClasic")
-    # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    # ja = JayaClasic(20, listVars, function1)
-    # print(ja.run(100))
-    # print("--------------------------------------------------------------")
-    #
-    # print("RUN: Self-adaptive Jaya Algorithm")
-    # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    # ja = JayaSelfAdadtive(listVars, function1)
-    # print(ja.run(100))
-    # print("--------------------------------------------------------------")
+    
+    print("Minimizing sum of squares using float numbers")
+    print("RUN: Self-adaptive Jaya Algorithm")
+    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    ja = JayaSelfAdadtive(listVars, sumOfSquares)
+    print(ja.run(100).getBestAndWorst())
+    print("--------------------------------------------------------------")
     #
     # print("RUN: Quasi-oppositional Based Jaya (QO-Jaya) Algorithm")
     # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    # ja = JayaQuasiOppositional(20, listVars, function1)
+    # ja = JayaQuasiOppositional(20, listVars, sumOfSquares)
     # print(ja.run(100))
     # print("--------------------------------------------------------------")
     #
     # print("RUN: Self-adaptive Multi-population (SAMP) Jaya Algorithm")
     # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    # ja = JayaSAMP(20, listVars, function1)
+    # ja = JayaSAMP(20, listVars, sumOfSquares)
     # print(ja.run(100))
     # print("--------------------------------------------------------------")
 
     # print("RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya Algorithm MultiProcess")
     # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    # ja = JayaSAMPE(20, listVars, sumaDeCuadrados)
+    # ja = JayaSAMPE(20, listVars, sumOfSquares)
     # print(ja.run(100))
     # print("--------------------------------------------------------------")
 
