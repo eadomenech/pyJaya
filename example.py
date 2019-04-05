@@ -52,12 +52,13 @@ def main():
     ja = JayaSelfAdadtive(listVars, sumOfSquares)
     print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")
-    #
-    # print("RUN: Quasi-oppositional Based Jaya (QO-Jaya) Algorithm")
-    # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    # ja = JayaQuasiOppositional(20, listVars, sumOfSquares)
-    # print(ja.run(100))
-    # print("--------------------------------------------------------------")
+    
+    print("Minimizing sum of squares using float numbers")
+    print("RUN: Quasi-oppositional Based Jaya (QO-Jaya) Algorithm")
+    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    ja = JayaQuasiOppositional(20, listVars, sumOfSquares)
+    print(ja.run(100).getBestAndWorst())
+    print("--------------------------------------------------------------")
     #
     # print("RUN: Self-adaptive Multi-population (SAMP) Jaya Algorithm")
     # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
@@ -65,11 +66,12 @@ def main():
     # print(ja.run(100))
     # print("--------------------------------------------------------------")
 
-    # print("RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya Algorithm MultiProcess")
-    # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    # ja = JayaSAMPE(20, listVars, sumOfSquares)
-    # print(ja.run(100))
-    # print("--------------------------------------------------------------")
+    print("Minimizing sum of squares using float numbers")
+    print("RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya Algorithm MultiProcess")
+    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    ja = JayaSAMPE(20, listVars, sumOfSquares)
+    print(ja.run(100))
+    print("--------------------------------------------------------------")
 
 
 if __name__ == '__main__':

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from .base import JayaBase
-from .population import Population
-from .solution import Solution
+from pyjaya.base import JayaBase
+from pyjaya.clasic import JayaClasic
+from pyjaya.population import Population
+from pyjaya.solution import Solution
 import numpy as np
 
 
@@ -43,26 +44,9 @@ class JayaQuasiOppositional(JayaBase):
     def run(self, numIterations):
         for i in range(numIterations):
             self.population = self.newPopulation()
-            result = self.population.getBestAndWorst()
-            r1 = np.random.rand(self.cantVars)
-            r2 = np.random.rand(self.cantVars)
-            for solution in self.population.solutions:
-                solt = []
-                for v_item, v_value in enumerate(solution.solution):
-                    solt.append(self.listVars[v_item].convert(
-                        (v_value+r1[v_item] * (result['best_solution'][v_item] - abs(v_value)) - r2[v_item] * (result['worst_solution'][v_item]-abs(v_value)))
-                    ))
-                auxSolution = Solution(
-                    self.listVars, self.functionToEvaluate,
-                    self.listConstraints)
-                auxSolution.setSolution(np.array(solt))
-                if self.minimax:
-                    if (auxSolution.value > solution.value) and \
-                            (auxSolution.constraintsOK(np.array(solt))):
-                        solution = auxSolution
-                else:
-                    if (auxSolution.value < solution.value) and \
-                            (auxSolution.constraintsOK(np.array(solt))):
-                        solution.setSolution(auxSolution.solution)
+            self.population = JayaClasic(
+                self.population.size(), self.listVars,
+                self.functionToEvaluate, self.listConstraints,
+                self.population).run(1)
 
-        return self.population.getBestAndWorst()
+        return self.population
