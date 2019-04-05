@@ -31,18 +31,20 @@ def himmelblauConstraintTwo(solution):
 
 
 def main():
+    print("Minimizing sum of squares using float numbers")
     print("RUN: JayaClasic")
     listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
-    ja = JayaClasic(2, listVars, sumaDeCuadrados)
+    ja = JayaClasic(20, listVars, sumaDeCuadrados)
     print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")
-    #
-    # print("RUN: JayaBinary")
-    # listVars = [BinaryRange() for i in range(10)]
-    # ja = JayaBinary(5, listVars, function2)
-    # ja.toMaximize()
-    # print(ja.run(100))
-    # print("--------------------------------------------------------------")
+    
+    print("Maximizing sum of binary numbers")
+    print("RUN: JayaBinary")
+    listVars = [BinaryRange() for i in range(10)]
+    ja = JayaBinary(10, listVars, suma)
+    ja.toMaximize()
+    print(ja.run(100).getBestAndWorst())
+    print("--------------------------------------------------------------")
     #
     # print("RUN: JayaClasic")
     # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
@@ -68,10 +70,10 @@ def main():
     # print(ja.run(100))
     # print("--------------------------------------------------------------")
 
-    # print("RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya Algorithm")
+    # print("RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya Algorithm MultiProcess")
     # listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
     # ja = JayaSAMPE(20, listVars, sumaDeCuadrados)
-    # print(ja.run(300))
+    # print(ja.run(100))
     # print("--------------------------------------------------------------")
 
 

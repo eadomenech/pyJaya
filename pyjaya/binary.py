@@ -9,11 +9,11 @@ import math
 class JayaBinary(JayaBase):
 
     def run(self, number_iterations):
-        result = self.population.getBestAndWorst()
         for i in range(number_iterations):
+            result = self.population.getBestAndWorst()
+            np.random.seed()
             r1 = np.random.rand(self.cantVars)
             r2 = np.random.rand(self.cantVars)
-            newPopulation = Population(self.minimax)
             for solution in self.population.solutions:
                 solt = []
                 for v_item, v_value in enumerate(solution.solution):
@@ -29,12 +29,10 @@ class JayaBinary(JayaBase):
                 if self.minimax:
                     if (auxSolution.value > solution.value) and \
                             (auxSolution.constraintsOK(np.asarray(solt))):
-                        solution = auxSolution
+                        solution.setSolution(auxSolution.solution)
                 else:
                     if (auxSolution.value < solution.value) and \
                             (auxSolution.constraintsOK(np.asarray(solt))):
                         solution.setSolution(auxSolution.solution)
-                newPopulation.solutions.append(solution)
-                self.population = newPopulation
 
-        return self.population.getBestAndWorst()
+        return self.population
