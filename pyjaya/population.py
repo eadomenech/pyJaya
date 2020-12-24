@@ -9,14 +9,28 @@ import copy
 
 
 class Population():
+    """Population class
+
+    Args:
+        minimax (int): Find minimum or maximum (0: minimize or 1: maximize)
+    """
 
     def __init__(self, minimax):
+        """Population init"""
         self.solutions = []
         self.minimax = minimax
 
     def generate(
             self, numSolutions, listVars, functionToEvaluate,
             listConstraints):
+        """[summary]
+
+        Args:
+            numSolutions ([type]): [description]
+            listVars ([type]): [description]
+            functionToEvaluate ([type]): [description]
+            listConstraints ([type]): [description]
+        """        
         for i in range(numSolutions):
             solution = Solution(
                 listVars, functionToEvaluate, listConstraints)
