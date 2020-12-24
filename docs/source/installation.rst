@@ -6,13 +6,13 @@ Installation
 Stable release
 --------------
 
-To install Almiky, run this command in your terminal:
+To install pyJaya, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install almiky
+    $ pip install pyJaya
 
-This is the preferred method to install Almiky, as it will always install the most recent stable release.
+This is the preferred method to install pyJaya, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -24,10 +24,10 @@ you through the process.
 From sources
 ------------
 
-The sources for Almiky can be downloaded from the Github repository.
+The sources for pyJaya can be downloaded from the Github repository.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone https://github.com/eadomenech/almiky.git
+    $ git clone https://github.com/eadomenech/pyjaya.git
