@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from pyJaya.consts import *
-import numpy as np
+from pyJaya.consts import minimaxType
 from pyJaya.population import Population
 import copy
 

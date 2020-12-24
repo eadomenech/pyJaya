@@ -2,7 +2,6 @@
 from .base import JayaBase
 from .clasic import JayaClasic
 from pyJaya.population import Population
-from pyJaya.solution import Solution
 import numpy as np
 
 
@@ -14,7 +13,8 @@ class JayaSelfAdadtive(JayaBase):
 
     def nextPopulation(self, population):
         numOldSolutions = population.size()
-        numNewSolutions = int(round(numOldSolutions*(1 + np.random.rand()-0.5)))
+        numNewSolutions = int(
+            round(numOldSolutions*(1 + np.random.rand()-0.5)))
 
         if numNewSolutions == numOldSolutions:
             return population
@@ -33,10 +33,12 @@ class JayaSelfAdadtive(JayaBase):
                 for solution in population.solutions:
                     newPopulation.solutions.append(solution)
                 if self.minimax:
-                    for solution in population.sorted()[numOldSolutions-numNewSolutions:]:
+                    begin = numOldSolutions-numNewSolutions
+                    for solution in population.sorted()[begin:]:
                         newPopulation.solutions.append(solution)
                 else:
-                    for solution in population.sorted()[:numNewSolutions-numOldSolutions]:
+                    limit = numNewSolutions-numOldSolutions
+                    for solution in population.sorted()[:limit]:
                         newPopulation.solutions.append(solution)
             return newPopulation
 

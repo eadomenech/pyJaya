@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from .base import JayaBase
-from pyJaya.population import Population
 from pyJaya.population import Solution
 import numpy as np
 import math
@@ -17,7 +16,10 @@ class JayaBinary(JayaBase):
             for solution in self.population.solutions:
                 solt = []
                 for v_item, v_value in enumerate(solution.solution):
-                    v = v_value+r1[v_item] * (result['best_solution'][v_item] - abs(v_value)) - r2[v_item] * (result['worst_solution'][v_item]-abs(v_value))
+                    v = v_value + r1[v_item] *\
+                        (result['best_solution'][v_item] - abs(v_value)) -\
+                        r2[v_item] *\
+                        (result['worst_solution'][v_item]-abs(v_value))
                     if math.tanh(abs(v)) > 0.5:
                         solt.append(1.0)
                     else:

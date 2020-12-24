@@ -26,7 +26,8 @@ class NumberRange():
 class IntRange(NumberRange):
 
     def validate(self):
-        if not isinstance(self.minor, (int)) or not isinstance(self.major, (int)):
+        if not isinstance(
+                self.minor, (int)) or not isinstance(self.major, (int)):
             raise NotImplementedError("The numbers should be integer")
 
     def get(self):

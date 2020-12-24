@@ -15,7 +15,11 @@ class JayaSAMP(JayaBase):
             solt = []
             for v_item, v_value in enumerate(solution.solution):
                 solt.append(self.listVars[v_item].convert(
-                    (v_value+r1[v_item] * (result['best_solution'][v_item] - abs(v_value)) - r2[v_item] * (result['worst_solution'][v_item]-abs(v_value)))
+                    (
+                        v_value+r1[v_item] *
+                        (result['best_solution'][v_item] - abs(v_value)) -
+                        r2[v_item] *
+                        (result['worst_solution'][v_item]-abs(v_value)))
                 ))
             auxSolution = Solution(
                 self.listVars, self.functionToEvaluate,
@@ -43,10 +47,14 @@ class JayaSAMP(JayaBase):
                 newPopulation = Population(self.minimax)
                 newPopulation.merge(subPopulations)
                 if self.minimax:
-                    if newPopulation.getBestAndWorst()['best_value'] > self.population.getBestAndWorst()['best_value']:
+                    nBest = newPopulation.getBestAndWorst()['best_value']
+                    lBest = self.population.getBestAndWorst()['best_value']
+                    if nBest > lBest:
                         self.population = newPopulation
                 else:
-                    if newPopulation.getBestAndWorst()['best_value'] < self.population.getBestAndWorst()['best_value']:
+                    nBest = newPopulation.getBestAndWorst()['best_value']
+                    lBest = self.population.getBestAndWorst()['best_value']
+                    if nBest < lBest:
                         self.population = newPopulation
             else:
                 if self.minimax:
@@ -62,7 +70,9 @@ class JayaSAMP(JayaBase):
                         p = self.sprint(p)
                     newPopulation = Population(self.minimax)
                     newPopulation.merge(subPopulations)
-                    if newPopulation.getBestAndWorst()['best_value'] > self.population.getBestAndWorst()['best_value']:
+                    nBest = newPopulation.getBestAndWorst()['best_value']
+                    lBest = self.population.getBestAndWorst()['best_value']
+                    if nBest > lBest:
                         self.population = newPopulation
                 else:
                     bV = self.population.getBestAndWorst()['best_value']
@@ -77,6 +87,8 @@ class JayaSAMP(JayaBase):
                         p = self.sprint(p)
                     newPopulation = Population(self.minimax)
                     newPopulation.merge(subPopulations)
-                    if newPopulation.getBestAndWorst()['best_value'] < self.population.getBestAndWorst()['best_value']:
+                    newBest = newPopulation.getBestAndWorst()['best_value']
+                    lastBest = self.population.getBestAndWorst()['best_value']
+                    if newBest < lastBest:
                         self.population = newPopulation
         return self.population.getBestAndWorst()

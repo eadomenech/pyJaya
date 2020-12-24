@@ -19,7 +19,8 @@ class JayaQuasiOppositional(JayaBase):
                 AU = self.listVars[solt_item].major
                 a = self.listVars[solt_item].convert((AL + AU) / 2)
                 b = self.listVars[solt_item].convert(AL + AU - solt_value)
-                val = (max(a, b) - min(a, b)) * np.random.random_sample() + min(a, b)
+                val = (max(a, b) - min(a, b)) *\
+                    np.random.random_sample() + min(a, b)
                 newsolution.append(self.listVars[solt_item].convert(val))
             newSolution.setSolution(newsolution)
             newPopulation.solutions.append(newSolution)

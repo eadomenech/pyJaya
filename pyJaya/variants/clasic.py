@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from pyJaya.variants.base import JayaBase
-from pyJaya.population import Population
 from pyJaya.solution import Solution
 import numpy as np
 
@@ -17,7 +16,11 @@ class JayaClasic(JayaBase):
                 solt = []
                 for v_item, v_value in enumerate(solution.solution):
                     solt.append(self.listVars[v_item].convert(
-                        (v_value + r1[v_item] * (result['best_solution'][v_item] - abs(v_value)) - r2[v_item] * (result['worst_solution'][v_item]-abs(v_value)))
+                        (
+                            v_value + r1[v_item] *
+                            (result['best_solution'][v_item] - abs(v_value))
+                            - r2[v_item] *
+                            (result['worst_solution'][v_item]-abs(v_value)))
                     ))
                 auxSolution = Solution(
                     self.listVars, self.functionToEvaluate,

@@ -3,8 +3,7 @@
 Population class
 """
 from pyJaya.solution import Solution
-from pyJaya.consts import *
-import numpy as np
+from pyJaya.consts import minimaxType
 import copy
 
 
@@ -30,7 +29,7 @@ class Population():
             listVars ([type]): [description]
             functionToEvaluate ([type]): [description]
             listConstraints ([type]): [description]
-        """        
+        """
         for i in range(numSolutions):
             solution = Solution(
                 listVars, functionToEvaluate, listConstraints)
@@ -96,6 +95,6 @@ class Population():
         self.solutions = sorted(
             listSolutions, reverse=self.minimax,
             key=lambda solution: solution.value)
-    
+
     def size(self):
         return len(self.solutions)
