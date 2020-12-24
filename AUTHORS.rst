@@ -10,4 +10,4 @@ Development Lead
 Contributors
 ------------
 
-Yoel Benítez Fonseca <ybenitezf@gmail.com>
+* Yoel Benítez Fonseca <ybenitezf@gmail.com>
