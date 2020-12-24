@@ -1,12 +1,19 @@
 # PyJaya
 Python implementation of Jaya Algorithm and its variants
 
-# install
+## Requirements
+
+Config virtualenv:
+
 ```bash
-pip install -r requirements.txt
+$ git clone https://github.com/eadomenech/pyjaya src
+$ cd src/
+$ python3 -m venv env
+$ source env/bin/activate
+$ pip install -r requirements.txt
 ```
 
-# run
+## Run example
 ```bash
 python example.py
 ```
