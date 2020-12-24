@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from pyjaya.consts import *
+from pyJaya.consts import *
 import numpy as np
-from pyjaya.population import Population
+from pyJaya.population import Population
 import copy
 
 

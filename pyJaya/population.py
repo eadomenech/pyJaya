@@ -2,8 +2,8 @@
 """
 Population class
 """
-from pyjaya.solution import Solution
-from pyjaya.consts import *
+from pyJaya.solution import Solution
+from pyJaya.consts import *
 import numpy as np
 import copy
 

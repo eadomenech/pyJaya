@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from .base import JayaBase
-from pyjaya.population import Population
-from pyjaya.population import Solution
+from pyJaya.population import Population
+from pyJaya.population import Solution
 import numpy as np
 import math
 

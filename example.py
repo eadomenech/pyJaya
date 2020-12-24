@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-from pyjaya.variants.clasic import JayaClasic
-from pyjaya.variants.binary import JayaBinary
-from pyjaya.variants.selfAdadtive import JayaSelfAdadtive
-from pyjaya.variants.quasiOppositional import JayaQuasiOppositional
-from pyjaya.variants.samp import JayaSAMP
-# from pyjaya.sampe import JayaSAMPE
-from pyjaya.variants.sampemultiprocess import JayaSAMPE
-from pyjaya.utils import FloatRange, IntRange, BinaryRange
+from pyJaya.variants.clasic import JayaClasic
+from pyJaya.variants.binary import JayaBinary
+from pyJaya.variants.selfAdadtive import JayaSelfAdadtive
+from pyJaya.variants.quasiOppositional import JayaQuasiOppositional
+from pyJaya.variants.samp import JayaSAMP
+# from pyJaya.sampe import JayaSAMPE
+from pyJaya.variants.sampemultiprocess import JayaSAMPE
+from pyJaya.utils import FloatRange, IntRange, BinaryRange
 import numpy as np
 
 

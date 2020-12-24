@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from .base import JayaBase
 from .clasic import JayaClasic
-from pyjaya.population import Population
-from pyjaya.solution import Solution
+from pyJaya.population import Population
+from pyJaya.solution import Solution
 from multiprocessing import Process, Queue, current_process, freeze_support
 from multiprocessing import Pool
 import numpy as np

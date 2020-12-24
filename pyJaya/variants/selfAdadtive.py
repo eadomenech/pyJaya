@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from .base import JayaBase
 from .clasic import JayaClasic
-from pyjaya.population import Population
-from pyjaya.solution import Solution
+from pyJaya.population import Population
+from pyJaya.solution import Solution
 import numpy as np
 
 

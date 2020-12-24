@@ -1,4 +1,4 @@
-pyjaya package
+pyJaya package
 ==============
 
 Subpackages
@@ -7,39 +7,36 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   pyjaya.variants
+   pyJaya.variants
 
-Submodules
-----------
-
-pyjaya.consts module
+pyJaya.consts module
 --------------------
 
-.. automodule:: pyjaya.consts
+.. automodule:: pyJaya.consts
    :members:
    :undoc-members:
    :show-inheritance:
 
-pyjaya.population module
+pyJaya.population module
 ------------------------
 
-.. automodule:: pyjaya.population
+.. automodule:: pyJaya.population
    :members:
    :undoc-members:
    :show-inheritance:
 
-pyjaya.solution module
+pyJaya.solution module
 ----------------------
 
-.. automodule:: pyjaya.solution
+.. automodule:: pyJaya.solution
    :members:
    :undoc-members:
    :show-inheritance:
 
-pyjaya.utils module
+pyJaya.utils module
 -------------------
 
-.. automodule:: pyjaya.utils
+.. automodule:: pyJaya.utils
    :members:
    :undoc-members:
    :show-inheritance:
@@ -47,7 +44,7 @@ pyjaya.utils module
 Module contents
 ---------------
 
-.. automodule:: pyjaya
+.. automodule:: pyJaya
    :members:
    :undoc-members:
    :show-inheritance:
