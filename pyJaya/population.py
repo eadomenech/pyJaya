@@ -11,7 +11,7 @@ class Population():
     """Population class
 
     Args:
-        minimax (int): Find minimum or maximum (0: minimize or 1: maximize)
+        minimax (int): Objective function to be (0: minimized or 1: maximized)
     """
 
     def __init__(self, minimax):
@@ -22,13 +22,13 @@ class Population():
     def generate(
             self, numSolutions, listVars, functionToEvaluate,
             listConstraints):
-        """[summary]
+        """Population generator
 
         Args:
-            numSolutions ([type]): [description]
-            listVars ([type]): [description]
-            functionToEvaluate ([type]): [description]
-            listConstraints ([type]): [description]
+            numSolutions (int): Number of solutions
+            listVars (list): Range list
+            functionToEvaluate (funtion): Function to minimize or maximize
+            listConstraints (list): Constraint list
         """
         for i in range(numSolutions):
             solution = Solution(
