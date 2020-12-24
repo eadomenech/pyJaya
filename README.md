@@ -13,6 +13,13 @@ $ source env/bin/activate
 $ pip install -r requirements.txt
 ```
 
+## Docs generation
+
+```bash
+$ make html
+$ make latexpdf
+```
+
 ## Run example
 ```bash
 python example.py
