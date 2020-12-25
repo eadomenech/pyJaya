@@ -6,7 +6,7 @@ from pyJaya.variants.quasiOppositional import JayaQuasiOppositional
 from pyJaya.variants.samp import JayaSAMP
 # from pyJaya.sampe import JayaSAMPE
 from pyJaya.variants.sampemultiprocess import JayaSAMPE
-from pyJaya.utils import FloatRange, IntRange, BinaryRange
+from pyJaya.utils import VariableFloat, VariableInt, VariableBinary
 import numpy as np
 
 
@@ -19,7 +19,8 @@ def suma(solution):
 
 
 def himmelblau(solution):
-    return (solution[0]**2+solution[1]-11)**2+(solution[0]+solution[1]**2-7)**2
+    return (
+        solution[0]**2+solution[1]-11)**2+(solution[0]+solution[1]**2-7)**2
 
 
 def himmelblauConstraintOne(solution):
@@ -33,14 +34,14 @@ def himmelblauConstraintTwo(solution):
 def main():
     print("Minimizing sum of squares using float numbers")
     print("RUN: JayaClasic")
-    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    listVars = [VariableFloat(-100.0, 100.0) for i in range(2)]
     ja = JayaClasic(20, listVars, sumOfSquares)
     print(ja.run(200).getBestAndWorst())
     print("--------------------------------------------------------------")
     
     print("Maximizing sum of binary numbers")
     print("RUN: JayaBinary")
-    listVars = [BinaryRange() for i in range(10)]
+    listVars = [VariableBinary() for i in range(10)]
     ja = JayaBinary(20, listVars, suma)
     ja.toMaximize()
     print(ja.run(200).getBestAndWorst())
@@ -48,28 +49,28 @@ def main():
     
     print("Minimizing sum of squares using float numbers")
     print("RUN: Self-adaptive Jaya Algorithm")
-    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    listVars = [VariableFloat(-100.0, 100.0) for i in range(2)]
     ja = JayaSelfAdadtive(listVars, sumOfSquares)
     print(ja.run(200).getBestAndWorst())
     print("--------------------------------------------------------------")
     
     print("Minimizing sum of squares using float numbers")
     print("RUN: Quasi-oppositional Based Jaya (QO-Jaya) Algorithm")
-    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    listVars = [VariableFloat(-100.0, 100.0) for i in range(2)]
     ja = JayaQuasiOppositional(20, listVars, sumOfSquares)
     print(ja.run(200).getBestAndWorst())
     print("--------------------------------------------------------------")
     
     print("Minimizing sum of squares using float numbers")
     print("RUN: Self-adaptive Multi-population (SAMP) Jaya Algorithm")
-    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    listVars = [VariableFloat(-100.0, 100.0) for i in range(2)]
     ja = JayaSAMP(20, listVars, sumOfSquares)
     print(ja.run(100))
     print("--------------------------------------------------------------")
 
     print("Minimizing sum of squares using float numbers")
     print("RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya Algorithm MultiProcess")
-    listVars = [FloatRange(-100.0, 100.0) for i in range(2)]
+    listVars = [VariableFloat(-100.0, 100.0) for i in range(2)]
     ja = JayaSAMPE(20, listVars, sumOfSquares)
     print(ja.run(100))
     print("--------------------------------------------------------------")

@@ -1,83 +1,170 @@
 # -*- coding: utf-8 -*-
+from abc import ABC, abstractmethod
+
 import numpy as np
 
 
-class NumberRange():
+class Variable(ABC):
+    """Variable class
+    """
 
-    def __init__(self, outside_first=0, outside_second=1):
+    @abstractmethod
+    def validate(self):
+        """Client must define it self"""
+        raise NotImplementedError("Client must define it self")
+
+    @abstractmethod
+    def get(self):
+        """Client must define it self"""
+        raise NotImplementedError("Client must define it self")
+
+    @abstractmethod
+    def convert(self):
+        """Client must define it self"""
+        raise NotImplementedError("Client must define it self")
+
+
+class VariableInt(Variable):
+    """VariableInt class
+
+    Args:
+        outside_first (int, optional):
+            Lowest possible value in the range of the variable.
+            Defaults to -100.
+        outside_second (int, optional): Largest possible value in the
+            range of the variable. Defaults to 100.
+    """
+
+    def __init__(self, outside_first=-100, outside_second=100):
 
         self.minor = min(outside_first, outside_second)
         self.major = max(outside_first, outside_second)
         self.validate()
 
     def validate(self):
-        """Client must define it self"""
-        raise NotImplementedError("Client must define it self")
+        """Validate that the variables are integers
 
-    def get(self):
-        """Client must define it self"""
-        raise NotImplementedError("Client must define it self")
-
-    def convert(self):
-        """Client must define it self"""
-        raise NotImplementedError("Client must define it self")
-
-
-class IntRange(NumberRange):
-
-    def validate(self):
+        Raises:
+            NotImplementedError: "The numbers should be integer"
+        """
         if not isinstance(
                 self.minor, (int)) or not isinstance(self.major, (int)):
             raise NotImplementedError("The numbers should be integer")
 
     def get(self):
+        """Returns an integer in the possible range
+
+        Returns:
+            int: Integer in the range.
+        """
         np.random.seed()
         return int((self.major-self.minor) * np.random.rand() + self.minor)
 
-    def convert(self, value):
-        value = round(value)
-        if value > self.major:
+    def convert(self, item):
+        """Converts an item to a possible value in the range
+
+        Args:
+            item (int or float): Value to convert
+
+        Returns:
+            int: Value in the range
+        """
+        item = round(item)
+        if item > self.major:
             return self.major
-        elif value < self.minor:
+        elif item < self.minor:
             return self.minor
         else:
-            return value
+            return int(item)
 
 
-class FloatRange(NumberRange):
+class VariableFloat(Variable):
+    """VariableFloat class
+
+    Args:
+        outside_first (int, optional):
+            Lowest possible value in the range of the variable.
+            Defaults to -100.0.
+        outside_second (int, optional): Largest possible value in the
+            range of the variable. Defaults to 100.0.
+    """
+
+    def __init__(self, outside_first=-100.0, outside_second=100.0):
+
+        self.minor = min(outside_first, outside_second)
+        self.major = max(outside_first, outside_second)
+        self.validate()
 
     def validate(self):
+        """Validate that the variables are float
+
+        Raises:
+            NotImplementedError: "The numbers should be float"
+        """
         if not isinstance(
                 self.minor, (float)) or not isinstance(self.major, (float)):
             raise NotImplementedError("The numbers should be float")
 
     def get(self):
+        """Returns an float in the possible range
+
+        Returns:
+            float: Float in the range.
+        """
         np.random.seed()
         return (self.major-self.minor) * np.random.rand() + self.minor
 
-    def convert(self, value):
-        if value > self.major:
+    def convert(self, item):
+        """Converts an item to a possible value in the range
+
+        Args:
+            item (int or float): Value to convert
+
+        Returns:
+            float: Value in the range
+        """
+        if item > self.major:
             return self.major
-        elif value < self.minor:
+        elif item < self.minor:
             return self.minor
         else:
-            return value
+            return float(item)
 
 
-class BinaryRange(NumberRange):
+class VariableBinary(Variable):
+    """VariableBinary class"""
+
+    def __init__(self):
+
+        self.minor = 0
+        self.major = 1
+        self.validate()
 
     def validate(self):
         pass
 
     def get(self):
+        """Returns an integer in the possible range
+
+        Returns:
+            int: Integer in the range.
+        """
         np.random.seed()
         return np.random.randint(2)
 
-    def convert(self, value):
-        value = round(value)
-        if value > 1:
-            return 1.0
-        elif value < 0.0:
-            return 0.0
+    def convert(self, item):
+        """Converts an item to a possible value in the range
+
+        Args:
+            item (int or float): Value to convert
+
+        Returns:
+            int: Value in the range
+        """
+        item = round(item)
+        if item > 1.0:
+            return 1
+        elif item < 0.0:
+            return 0
         else:
-            return value
+            return int(item)
