@@ -28,7 +28,7 @@ class Population():
             numSolutions (int): Number of solutions
             listVars (list): Range list
             functionToEvaluate (funtion): Function to minimize or maximize
-            listConstraints (list): Constraint list
+            listConstraints (list, optional): Constraint list. Defaults to [].
         """
         for i in range(numSolutions):
             solution = Solution(
