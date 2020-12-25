@@ -71,7 +71,7 @@ class Solution():
 
         Returns:
             Float: Result when evaluating the solution
-        """        
+        """
         return self.functionToEvaluate(*[self.solution])
 
     def setSolution(self, solution):
@@ -79,6 +79,6 @@ class Solution():
 
         Args:
             solution (Solution): Solution to be assigned
-        """        
+        """
         self.solution = solution
         self.value = self.evaluate()

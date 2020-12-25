@@ -25,14 +25,6 @@ pyJaya.population module
    :undoc-members:
    :show-inheritance:
 
-pyJaya.pyJaya module
---------------------
-
-.. automodule:: pyJaya.pyJaya
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pyJaya.solution module
 ----------------------
 

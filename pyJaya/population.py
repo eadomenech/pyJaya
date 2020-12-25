@@ -37,14 +37,26 @@ class Population():
             self.solutions.append(solution)
 
     def toMaximize(self):
+        """Switch to maximize function
+        """
         self.minimax = minimaxType['maximize']
 
     def sorted(self):
+        """Sort the solutions
+
+        Returns:
+            list: List sorted solutions
+        """
         return sorted(
             self.solutions, reverse=self.minimax,
             key=lambda solution: solution.value)
 
     def getBestAndWorst(self):
+        """Best and worst value and solution
+
+        Returns:
+            dict: Best value, worst value, best solution and worst solution
+        """
         solutionSorted = self.sorted()
         if self.minimax:
             return {
@@ -60,6 +72,14 @@ class Population():
                 'worst_solution': solutionSorted[-1].solution}
 
     def divideInTo(self, n=2):
+        """Divide the population into n subpopulations
+
+        Args:
+            n (int, optional): Number of subpopulations. Defaults to 2.
+
+        Returns:
+            list: Subpopulations list
+        """
         if n == 1:
             return [self]
         populations = []
@@ -73,6 +93,14 @@ class Population():
         return populations
 
     def divideInToWithElitist(self, n=2):
+        """Divide the population into n subpopulations with elitism
+
+        Args:
+            n (int, optional): Number of subpopulations. Defaults to 2.
+
+        Returns:
+            list: Subpopulations list
+        """
         if n == 1:
             return [self]
         populations = []
@@ -89,6 +117,11 @@ class Population():
         return populations
 
     def merge(self, listPopulation):
+        """Merge subpopulations and sort your solutions
+
+        Args:
+            listPopulation (list): Population list
+        """
         listSolutions = []
         for p in listPopulation:
             listSolutions += p.solutions
@@ -97,4 +130,9 @@ class Population():
             key=lambda solution: solution.value)
 
     def size(self):
+        """Get population size
+
+        Returns:
+            int: Number of solutions in the population
+        """
         return len(self.solutions)
