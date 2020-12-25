@@ -6,7 +6,7 @@ from pyJaya.variants.quasiOppositional import JayaQuasiOppositional
 from pyJaya.variants.samp import JayaSAMP
 # from pyJaya.sampe import JayaSAMPE
 from pyJaya.variants.sampemultiprocess import JayaSAMPE
-from pyJaya.utils import VariableFloat, VariableInt, VariableBinary
+from pyJaya.variables import VariableFloat, VariableInt, VariableBinary
 import numpy as np
 
 

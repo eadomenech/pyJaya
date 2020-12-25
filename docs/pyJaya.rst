@@ -33,10 +33,10 @@ pyJaya.solution module
    :undoc-members:
    :show-inheritance:
 
-pyJaya.utils module
--------------------
+pyJaya.variables module
+-----------------------
 
-.. automodule:: pyJaya.utils
+.. automodule:: pyJaya.variables
    :members:
    :undoc-members:
    :show-inheritance:
