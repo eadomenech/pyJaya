@@ -21,3 +21,5 @@ History
 ------------------
 
 * Flake8 fix.
+* Adding examples.
+* Update usage.
