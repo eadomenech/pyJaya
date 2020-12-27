@@ -17,7 +17,7 @@ History
 
 * Documentation improvements.
 
-0.1.6 (2020-12-24)
+0.1.6 (2020-12-27)
 ------------------
 
 * Flake8 fix.
