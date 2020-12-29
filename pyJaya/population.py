@@ -11,7 +11,7 @@ class Population():
     """Population class
 
     Args:
-        minimax (int): Objective function to be (0: minimized or 1: maximized)
+        minimax (int): Objective function to be (0: minimized or 1: maximized).
     """
 
     def __init__(self, minimax):
@@ -25,9 +25,9 @@ class Population():
         """Population generator
 
         Args:
-            numSolutions (int): Number of solutions
-            listVars (list): Range list
-            functionToEvaluate (funtion): Function to minimize or maximize
+            numSolutions (int): Number of solutions.
+            listVars (list): Range list.
+            functionToEvaluate (funtion): Function to minimize or maximize.
             listConstraints (list, optional): Constraint list. Defaults to [].
         """
         for i in range(numSolutions):
@@ -45,7 +45,7 @@ class Population():
         """Sort the solutions
 
         Returns:
-            list: List sorted solutions
+            list: List sorted solutions.
         """
         return sorted(
             self.solutions, reverse=self.minimax,
@@ -55,7 +55,7 @@ class Population():
         """Best and worst value and solution
 
         Returns:
-            dict: Best value, worst value, best solution and worst solution
+            dict: Best value, worst value, best solution and worst solution.
         """
         solutionSorted = self.sorted()
         if self.minimax:
@@ -78,7 +78,7 @@ class Population():
             n (int, optional): Number of subpopulations. Defaults to 2.
 
         Returns:
-            list: Subpopulations list
+            list: Subpopulations list.
         """
         if n == 1:
             return [self]
@@ -99,7 +99,7 @@ class Population():
             n (int, optional): Number of subpopulations. Defaults to 2.
 
         Returns:
-            list: Subpopulations list
+            list: Subpopulations list.
         """
         if n == 1:
             return [self]
@@ -120,7 +120,7 @@ class Population():
         """Merge subpopulations and sort your solutions
 
         Args:
-            listPopulation (list): Population list
+            listPopulation (list): Population list.
         """
         listSolutions = []
         for p in listPopulation:
@@ -133,6 +133,6 @@ class Population():
         """Get population size
 
         Returns:
-            int: Number of solutions in the population
+            int: Number of solutions in the population.
         """
         return len(self.solutions)

@@ -45,7 +45,7 @@ class VariableInt(Variable):
         """Validate that the variables are integers
 
         Raises:
-            NotImplementedError: "The numbers should be integer"
+            NotImplementedError: "The numbers should be integer".
         """
         if not isinstance(
                 self.minor, (int)) or not isinstance(self.major, (int)):
@@ -64,10 +64,10 @@ class VariableInt(Variable):
         """Converts an item to a possible value in the range
 
         Args:
-            item (int or float): Value to convert
+            item (int or float): Value to convert.
 
         Returns:
-            int: Value in the range
+            int: Value in the range.
         """
         item = round(item)
         if item > self.major:
@@ -99,7 +99,7 @@ class VariableFloat(Variable):
         """Validate that the variables are float
 
         Raises:
-            NotImplementedError: "The numbers should be float"
+            NotImplementedError: "The numbers should be float".
         """
         if not isinstance(
                 self.minor, (float)) or not isinstance(self.major, (float)):
@@ -118,10 +118,10 @@ class VariableFloat(Variable):
         """Converts an item to a possible value in the range
 
         Args:
-            item (int or float): Value to convert
+            item (int or float): Value to convert.
 
         Returns:
-            float: Value in the range
+            float: Value in the range.
         """
         if item > self.major:
             return self.major
@@ -156,10 +156,10 @@ class VariableBinary(Variable):
         """Converts an item to a possible value in the range
 
         Args:
-            item (int or float): Value to convert
+            item (int or float): Value to convert.
 
         Returns:
-            int: Value in the range
+            int: Value in the range.
         """
         item = round(item)
         if item > 1.0:

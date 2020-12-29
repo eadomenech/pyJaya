@@ -9,8 +9,8 @@ class Solution():
     """Solution class
 
     Args:
-        listVars (list): Range list
-        functionToEvaluate (funtion): Function to minimize or maximize
+        listVars (list): Range list.
+        functionToEvaluate (funtion): Function to minimize or maximize.
         listConstraints (list, optional): Constraint list. Defaults to [].
     """
 
@@ -18,7 +18,7 @@ class Solution():
         """Represent
 
         Returns:
-            str: Solution represent
+            str: Solution represent.
         """
         return self.__str__()
 
@@ -26,7 +26,7 @@ class Solution():
         """Str
 
         Returns:
-            str: Solution represent
+            str: Solution represent.
         """
         return str(self.solution)
 
@@ -56,10 +56,10 @@ class Solution():
         """Check that the solution satisfies the constraints
 
         Args:
-            solution (Solution): Solution to check
+            solution (Solution): Solution to check.
 
         Returns:
-            Bool: True if it satisfies the constraints, False if not
+            Bool: True if it satisfies the constraints, False if not.
         """
         for constraints in self.listConstraints:
             if not constraints(*[solution]):
@@ -70,7 +70,7 @@ class Solution():
         """Evaluate the solution
 
         Returns:
-            Float: Result when evaluating the solution
+            Float: Result when evaluating the solution.
         """
         return self.functionToEvaluate(*[self.solution])
 
@@ -78,7 +78,7 @@ class Solution():
         """Set solution
 
         Args:
-            solution (Solution): Solution to be assigned
+            solution (Solution): Solution to be assigned.
         """
         self.solution = solution
         self.value = self.evaluate()

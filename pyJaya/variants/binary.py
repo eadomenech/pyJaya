@@ -6,8 +6,25 @@ import math
 
 
 class JayaBinary(JayaBase):
+    """Jaya binary class
+
+    Args:
+        numSolutions (int): Number of solutions of population.
+        listVars (list): Range list.
+        functionToEvaluate (funtion): Function to minimize or maximize.
+        listConstraints (list, optional): Constraint list. Defaults to [].
+        population (Population, optional): Population. Defaults to None.
+    """
 
     def run(self, number_iterations):
+        """Run method
+
+        Args:
+            number_iterations (int): Number of iterations.
+
+        Returns:
+            Population: Final population.
+        """
         for i in range(number_iterations):
             result = self.population.getBestAndWorst()
             np.random.seed()

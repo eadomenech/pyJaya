@@ -7,8 +7,25 @@ import numpy as np
 
 
 class JayaQuasiOppositional(JayaBase):
+    """Jaya clasic class
+
+    Args:
+        numSolutions (int): Number of solutions of population.
+        listVars (list): Range list.
+        functionToEvaluate (funtion): Function to minimize or maximize.
+        listConstraints (list, optional): Constraint list. Defaults to [].
+        population (Population, optional): Population. Defaults to None.
+    """
 
     def generateQuasiOpposite(self, population):
+        """Generate quasi-opposite population
+
+        Args:
+            population (Population): Population to generate quasi-opposite.
+
+        Returns:
+            Population: [description]
+        """
         newPopulation = Population(self.minimax)
         for solution in population.solutions:
             newSolution = Solution(
@@ -27,6 +44,11 @@ class JayaQuasiOppositional(JayaBase):
         return newPopulation
 
     def newPopulation(self):
+        """New population with quasi-opposite elements.
+
+        Returns:
+            Population: Population with quasi-opposite elements.
+        """
         auxPopulation = Population(self.minimax)
         quasiOppositePopulation = self.generateQuasiOpposite(self.population)
         for s in self.population.solutions:
@@ -42,8 +64,16 @@ class JayaQuasiOppositional(JayaBase):
                 newPopulation.solutions.append(s)
         return newPopulation
 
-    def run(self, numIterations):
-        for i in range(numIterations):
+    def run(self, number_iterations):
+        """Run method
+
+        Args:
+            number_iterations (int): Number of iterations.
+
+        Returns:
+            Population: Final population.
+        """
+        for i in range(number_iterations):
             self.population = self.newPopulation()
             self.population = JayaClasic(
                 self.population.size(), self.listVars,

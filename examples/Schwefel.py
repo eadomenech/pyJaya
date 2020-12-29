@@ -5,10 +5,10 @@ http://benchmarkfcns.xyz/benchmarkfcns/schwefelfcn.html"""
 import numpy as np
 
 from pyJaya.variants.clasic import JayaClasic
-from pyJaya.variants.selfAdadtive import JayaSelfAdadtive
+from pyJaya.variants.selfAdaptive import JayaSelfAdaptive
 from pyJaya.variants.quasiOppositional import JayaQuasiOppositional
 from pyJaya.variants.samp import JayaSAMP
-from pyJaya.variants.sampemultiprocess import JayaSAMPE
+from pyJaya.variants.sampe import JayaSAMPE
 from pyJaya.variables import VariableFloat
 
 
@@ -28,7 +28,7 @@ def main():
 
     print("RUN: Self-adaptive Jaya Algorithm")
     listVars = [VariableFloat(-500.0, 500.0) for i in range(30)]
-    ja = JayaSelfAdadtive(listVars, schwefel)
+    ja = JayaSelfAdaptive(listVars, schwefel)
     print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")
 
@@ -41,7 +41,7 @@ def main():
     print("RUN: Self-adaptive Multi-population (SAMP) Jaya Algorithm")
     listVars = [VariableFloat(-500.0, 500.0) for i in range(30)]
     ja = JayaSAMP(100, listVars, schwefel)
-    print(ja.run(100))
+    print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")
 
     print(
@@ -49,7 +49,7 @@ def main():
         "Algorithm MultiProcess")
     listVars = [VariableFloat(-500.0, 500.0) for i in range(30)]
     ja = JayaSAMPE(100, listVars, schwefel)
-    print(ja.run(100))
+    print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")
 
 

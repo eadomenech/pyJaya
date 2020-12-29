@@ -1,17 +1,30 @@
 # -*- coding: utf-8 -*-
+import numpy as np
+
 from .base import JayaBase
 from .clasic import JayaClasic
 from pyJaya.population import Population
-import numpy as np
 
 
-class JayaSelfAdadtive(JayaBase):
+class JayaSelfAdaptive(JayaBase):
+    """Jaya Self-adaptive class
+
+    Args:
+        listVars (list): Range list.
+        functionToEvaluate (funtion): Function to minimize or maximize.
+        listConstraints (list, optional): Constraint list. Defaults to [].
+    """
 
     def __init__(self, listVars, functionToEvaluate, listConstraints=[]):
-        super(JayaSelfAdadtive, self).__init__(
+        super(JayaSelfAdaptive, self).__init__(
             len(listVars)*10, listVars, functionToEvaluate, listConstraints)
 
     def nextPopulation(self, population):
+        """New population.
+
+        Returns:
+            Population: Next population.
+        """
         numOldSolutions = population.size()
         numNewSolutions = int(
             round(numOldSolutions*(1 + np.random.rand()-0.5)))
@@ -42,8 +55,16 @@ class JayaSelfAdadtive(JayaBase):
                         newPopulation.solutions.append(solution)
             return newPopulation
 
-    def run(self, numIterations):
-        for i in range(numIterations):
+    def run(self, number_iterations):
+        """Run method
+
+        Args:
+            number_iterations (int): Number of iterations.
+
+        Returns:
+            Population: Final population.
+        """
+        for i in range(number_iterations):
             if i > 0:
                 self.population = self.nextPopulation(self.population)
             self.population = JayaClasic(

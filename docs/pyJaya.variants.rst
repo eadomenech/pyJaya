@@ -49,18 +49,10 @@ pyJaya.variants.sampe module
    :undoc-members:
    :show-inheritance:
 
-pyJaya.variants.sampemultiprocess module
-----------------------------------------
-
-.. automodule:: pyJaya.variants.sampemultiprocess
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-pyJaya.variants.selfAdadtive module
+pyJaya.variants.selfAdaptive module
 -----------------------------------
 
-.. automodule:: pyJaya.variants.selfAdadtive
+.. automodule:: pyJaya.variants.selfAdaptive
    :members:
    :undoc-members:
    :show-inheritance:
