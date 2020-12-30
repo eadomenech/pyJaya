@@ -14,9 +14,9 @@ class Population():
         minimax (int): Objective function to be (0: minimized or 1: maximized).
     """
 
-    def __init__(self, minimax):
+    def __init__(self, minimax, solutions=[]):
         """Population init"""
-        self.solutions = []
+        self.solutions = solutions
         self.minimax = minimax
 
     def generate(

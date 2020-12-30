@@ -52,7 +52,7 @@ class JayaSAMP(JayaBase):
                     solution.setSolution(auxSolution.solution)
         return population
 
-    def run(self, number_iterations):
+    def run(self, number_iterations, rn=[]):
         """Run method
 
         Args:
@@ -61,6 +61,13 @@ class JayaSAMP(JayaBase):
         Returns:
             Population: Final population.
         """
+        if len(rn) == 0:
+            self.rn = self.generate_rn(number_iterations)
+        else:
+            assert number_iterations == len(rn)
+            assert len(rn[0]) == self.cantVars
+            assert len(rn[0][0]) == 2
+            self.rn = rn
         result = self.population.getBestAndWorst()
         bestValue = result['best_value']
         for i in range(number_iterations):
@@ -69,7 +76,7 @@ class JayaSAMP(JayaBase):
                 subPopulations = self.population.divideInTo(m)
                 for p in subPopulations:
                     p = self.sprint(p)
-                newPopulation = Population(self.minimax)
+                newPopulation = Population(self.minimax, solutions=[])
                 newPopulation.merge(subPopulations)
                 if self.minimax:
                     nBest = newPopulation.getBestAndWorst()['best_value']
@@ -93,7 +100,7 @@ class JayaSAMP(JayaBase):
                     subPopulations = self.population.divideInTo(m)
                     for p in subPopulations:
                         p = self.sprint(p)
-                    newPopulation = Population(self.minimax)
+                    newPopulation = Population(self.minimax, solutions=[])
                     newPopulation.merge(subPopulations)
                     nBest = newPopulation.getBestAndWorst()['best_value']
                     lBest = self.population.getBestAndWorst()['best_value']
@@ -110,7 +117,7 @@ class JayaSAMP(JayaBase):
                     subPopulations = self.population.divideInTo(m)
                     for p in subPopulations:
                         p = self.sprint(p)
-                    newPopulation = Population(self.minimax)
+                    newPopulation = Population(self.minimax, solutions=[])
                     newPopulation.merge(subPopulations)
                     newBest = newPopulation.getBestAndWorst()['best_value']
                     lastBest = self.population.getBestAndWorst()['best_value']

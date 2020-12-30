@@ -15,7 +15,7 @@ class JayaClasic(JayaBase):
         population (Population, optional): Population. Defaults to None.
     """
 
-    def run(self, number_iterations):
+    def run(self, number_iterations, rn=[]):
         """Run method
 
         Args:
@@ -24,19 +24,23 @@ class JayaClasic(JayaBase):
         Returns:
             Population: Final population.
         """
+        if len(rn) == 0:
+            self.rn = self.generate_rn(number_iterations)
+        else:
+            assert number_iterations == len(rn)
+            assert len(rn[0]) == self.cantVars
+            assert len(rn[0][0]) == 2
+            self.rn = rn
         for i in range(number_iterations):
             result = self.population.getBestAndWorst()
-            np.random.seed()
-            r1 = np.random.rand(self.cantVars)
-            r2 = np.random.rand(self.cantVars)
             for solution in self.population.solutions:
                 solt = []
                 for v_item, v_value in enumerate(solution.solution):
                     solt.append(self.listVars[v_item].convert(
                         (
-                            v_value + r1[v_item] *
+                            v_value + self.rn[i][v_item][0] *
                             (result['best_solution'][v_item] - abs(v_value))
-                            - r2[v_item] *
+                            - self.rn[i][v_item][1] *
                             (result['worst_solution'][v_item]-abs(v_value)))
                     ))
                 auxSolution = Solution(

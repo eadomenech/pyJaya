@@ -15,9 +15,12 @@ class JayaSelfAdaptive(JayaBase):
         listConstraints (list, optional): Constraint list. Defaults to [].
     """
 
-    def __init__(self, listVars, functionToEvaluate, listConstraints=[]):
+    def __init__(
+            self, listVars, functionToEvaluate, listConstraints=[],
+            population=None):
         super(JayaSelfAdaptive, self).__init__(
-            len(listVars)*10, listVars, functionToEvaluate, listConstraints)
+            len(listVars)*10, listVars, functionToEvaluate, listConstraints,
+            population=population)
 
     def nextPopulation(self, population):
         """New population.
@@ -26,13 +29,13 @@ class JayaSelfAdaptive(JayaBase):
             Population: Next population.
         """
         numOldSolutions = population.size()
-        numNewSolutions = int(
-            round(numOldSolutions*(1 + np.random.rand()-0.5)))
+        r = 1 + (np.random.rand()-0.5)
+        numNewSolutions = round(numOldSolutions * r)
 
         if numNewSolutions == numOldSolutions:
             return population
         else:
-            newPopulation = Population(self.minimax)
+            newPopulation = Population(self.minimax, solutions=[])
             if numNewSolutions < numOldSolutions:
                 if numNewSolutions < self.cantVars:
                     numNewSolutions = self.cantVars
@@ -55,7 +58,7 @@ class JayaSelfAdaptive(JayaBase):
                         newPopulation.solutions.append(solution)
             return newPopulation
 
-    def run(self, number_iterations):
+    def run(self, number_iterations, rn=[]):
         """Run method
 
         Args:
@@ -64,12 +67,19 @@ class JayaSelfAdaptive(JayaBase):
         Returns:
             Population: Final population.
         """
+        if len(rn) == 0:
+            self.rn = self.generate_rn(number_iterations)
+        else:
+            assert number_iterations == len(rn)
+            assert len(rn[0]) == self.cantVars
+            assert len(rn[0][0]) == 2
+            self.rn = rn
         for i in range(number_iterations):
             if i > 0:
                 self.population = self.nextPopulation(self.population)
             self.population = JayaClasic(
                 self.population.size(), self.listVars,
-                self.functionToEvaluate, self.listConstraints,
-                self.population).run(1)
+                self.functionToEvaluate, listConstraints=self.listConstraints,
+                population=self.population).run(1, [self.rn[i]])
 
         return self.population

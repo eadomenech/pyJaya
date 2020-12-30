@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+import numpy as np
+
 from .base import JayaBase
 from .clasic import JayaClasic
 from pyJaya.population import Population
 from pyJaya.solution import Solution
-import numpy as np
 
 
 class JayaQuasiOppositional(JayaBase):
@@ -26,7 +27,7 @@ class JayaQuasiOppositional(JayaBase):
         Returns:
             Population: [description]
         """
-        newPopulation = Population(self.minimax)
+        newPopulation = Population(self.minimax, solutions=[])
         for solution in population.solutions:
             newSolution = Solution(
                 self.listVars, self.functionToEvaluate, self.listConstraints)
@@ -49,13 +50,13 @@ class JayaQuasiOppositional(JayaBase):
         Returns:
             Population: Population with quasi-opposite elements.
         """
-        auxPopulation = Population(self.minimax)
+        auxPopulation = Population(self.minimax, solutions=[])
         quasiOppositePopulation = self.generateQuasiOpposite(self.population)
         for s in self.population.solutions:
             auxPopulation.solutions.append(s)
         for s in quasiOppositePopulation.solutions:
             auxPopulation.solutions.append(s)
-        newPopulation = Population(self.minimax)
+        newPopulation = Population(self.minimax, solutions=[])
         if self.minimax:
             for s in auxPopulation.sorted()[-self.numSolutions:]:
                 newPopulation.solutions.append(s)
@@ -64,7 +65,7 @@ class JayaQuasiOppositional(JayaBase):
                 newPopulation.solutions.append(s)
         return newPopulation
 
-    def run(self, number_iterations):
+    def run(self, number_iterations, rn=[]):
         """Run method
 
         Args:
@@ -73,11 +74,18 @@ class JayaQuasiOppositional(JayaBase):
         Returns:
             Population: Final population.
         """
+        if len(rn) == 0:
+            self.rn = self.generate_rn(number_iterations)
+        else:
+            assert number_iterations == len(rn)
+            assert len(rn[0]) == self.cantVars
+            assert len(rn[0][0]) == 2
+            self.rn = rn
         for i in range(number_iterations):
             self.population = self.newPopulation()
             self.population = JayaClasic(
                 self.population.size(), self.listVars,
-                self.functionToEvaluate, self.listConstraints,
-                self.population).run(1)
+                self.functionToEvaluate, listConstraints=self.listConstraints,
+                population=self.population).run(1, [self.rn[i]])
 
         return self.population

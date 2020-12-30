@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+import numpy as np
+import copy
+
 from pyJaya.consts import minimaxType
 from pyJaya.population import Population
-import copy
 
 
 class JayaBase(object):
@@ -31,6 +33,19 @@ class JayaBase(object):
             self.population = self.generatePopulation()
         else:
             self.population = copy.deepcopy(population)
+
+    def generate_rn(self, number_iterations):
+        """Generate random numbers
+        """
+        rn = [None] * number_iterations
+        for iter in range(number_iterations):
+            rn[iter] = [None] * self.cantVars
+            for y in range(self.cantVars):
+                rn[iter][y] = [None] * 2
+                for j in range(2):
+                    np.random.seed()
+                    rn[iter][y][j] = np.random.rand()
+        return rn
 
     def generatePopulation(self):
         """Generate population
@@ -66,6 +81,6 @@ class JayaBase(object):
         """
         return self.population.getBestAndWorst()
 
-    def run(self, number_iterations):
+    def run(self, number_iterations, rn=[]):
         """Client must define it self"""
         raise NotImplementedError("Client must define it self")

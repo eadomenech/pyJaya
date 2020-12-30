@@ -23,3 +23,8 @@ History
 * Flake8 fix.
 * Adding examples.
 * Update usage.
+
+0.1.7 (2021-01-05)
+------------------
+
+* Fix clasic, adaptive and quasi.
