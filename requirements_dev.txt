@@ -8,9 +8,8 @@ coverage>=4.5.4
 Sphinx>=1.8.5
 twine>=1.14.0
 Pallets-Sphinx-Themes>=1.2.3
-Flask>=1.1.2
-python-jose>=3.2.0
-requests>=2.24.0
+
+numpy
 
 pytest>=4.6.5
 pytest-runner>=5.1

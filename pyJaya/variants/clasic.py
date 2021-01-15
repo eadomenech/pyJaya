@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+import numpy as np
+
 from pyJaya.variants.base import JayaBase
 from pyJaya.solution import Solution
-import numpy as np
 
 
 class JayaClasic(JayaBase):
