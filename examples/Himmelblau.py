@@ -3,6 +3,10 @@
 http://benchmarkfcns.xyz/benchmarkfcns/himmelblaufcn.html
 """
 
+# Temp
+import sys
+sys.path.append("")
+
 from pyJaya.variants.clasic import JayaClasic
 from pyJaya.variants.selfAdaptive import JayaSelfAdaptive
 from pyJaya.variants.quasiOppositional import JayaQuasiOppositional

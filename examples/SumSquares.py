@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 """SumSquares funtion"""
 
+# Temp
+import sys
+sys.path.append("")
+
 from pyJaya.variants.clasic import JayaClasic
 from pyJaya.variants.selfAdaptive import JayaSelfAdaptive
 from pyJaya.variants.quasiOppositional import JayaQuasiOppositional

@@ -2,6 +2,10 @@
 """Schwefel funtion
 http://benchmarkfcns.xyz/benchmarkfcns/schwefelfcn.html"""
 
+# Temp
+import sys
+sys.path.append("")
+
 import numpy as np
 
 from pyJaya.variants.clasic import JayaClasic

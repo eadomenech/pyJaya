@@ -2,6 +2,10 @@
 """Griewank funtion
 http://benchmarkfcns.xyz/benchmarkfcns/griewankfcn.html"""
 
+# Temp
+import sys
+sys.path.append("")
+
 import numpy as np
 
 from pyJaya.variants.clasic import JayaClasic

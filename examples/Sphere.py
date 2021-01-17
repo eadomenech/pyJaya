@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 """Sphere funtion"""
 
+# Temp
+import sys
+sys.path.append("")
+
 import numpy as np
 
 from pyJaya.variants.clasic import JayaClasic
