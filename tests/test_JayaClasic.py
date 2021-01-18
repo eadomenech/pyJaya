@@ -104,17 +104,11 @@ class TestUnconstrainedJayaClasicInRastringin:
     """Unconstrained Jaya Clasic in Rastringin tests"""
 
     def setup(self):
+        self.index = 0
         # scaling factors
-        self.rs1 = [[[0.38, 0.81], [0.92, 0.49]]]
-        self.rs2 = [
-            [[0.38, 0.81], [0.92, 0.49]],
-            [[0.65, 0.23], [0.38, 0.51]]
-        ]
-        self.rs3 = [
-            [[0.38, 0.81], [0.92, 0.49]],
-            [[0.65, 0.23], [0.38, 0.51]],
-            [[0.01, 0.7], [0.02, 0.5]]
-        ]
+        self.rn = [
+            0.38, 0.81, 0.92, 0.49, 0.65, 0.23,
+            0.38, 0.51, 0.01, 0.7, 0.02, 0.5]
         # Solutions
         s1 = Solution([], rastrigin)
         s1.setSolution(np.array([-4.570261872, 0.045197073]))
@@ -129,11 +123,17 @@ class TestUnconstrainedJayaClasicInRastringin:
         # Population
         self.population = Population(0, solutions=[s1, s2, s3, s4, s5])
 
-    def test_first_iteration(self):
+    def test_first_iteration(self, monkeypatch):
         """Tests first iteration."""
+
+        def rn():
+            self.index += 1
+            return self.rn[self.index-1]
+        monkeypatch.setattr(np.random, 'rand', rn)
+
         listVars = [VariableFloat(-5.12, 5.12) for i in range(2)]
         ja = JayaClasic(5, listVars, rastrigin, population=self.population)
-        bw = ja.run(1, self.rs1).getBestAndWorst()
+        bw = ja.run(1).getBestAndWorst()
         assert truncate(bw['best_value'], 9) == 2.108371360
         assert len(bw['best_solution']) == 2
         assert truncate(bw['best_solution'][0], 9) == 0.982105143
@@ -143,11 +143,17 @@ class TestUnconstrainedJayaClasicInRastringin:
         assert truncate(bw['worst_solution'][0], 2) == 5.12
         assert truncate(bw['worst_solution'][1], 11) == -1.84339288493
 
-    def test_second_iteration(self):
+    def test_second_iteration(self, monkeypatch):
         """Tests second iteration."""
+
+        def rn():
+            self.index += 1
+            return self.rn[self.index-1]
+        monkeypatch.setattr(np.random, 'rand', rn)
+
         listVars = [VariableFloat(-5.12, 5.12) for i in range(2)]
         ja = JayaClasic(5, listVars, rastrigin, population=self.population)
-        bw = ja.run(2, self.rs2).getBestAndWorst()
+        bw = ja.run(2).getBestAndWorst()
         assert truncate(bw['best_value'], 9) == 2.108371360
         assert len(bw['best_solution']) == 2
         assert truncate(bw['best_solution'][0], 9) == 0.982105143
@@ -157,11 +163,17 @@ class TestUnconstrainedJayaClasicInRastringin:
         assert truncate(bw['worst_solution'][0], 10) == 2.4303683434
         assert truncate(bw['worst_solution'][1], 10) == -1.0337930258
 
-    def test_third_iteration(self):
+    def test_third_iteration(self, monkeypatch):
         """Tests third iteration."""
+
+        def rn():
+            self.index += 1
+            return self.rn[self.index-1]
+        monkeypatch.setattr(np.random, 'rand', rn)
+
         listVars = [VariableFloat(-5.12, 5.12) for i in range(2)]
         ja = JayaClasic(5, listVars, rastrigin, population=self.population)
-        bw = ja.run(3, self.rs3).getBestAndWorst()
+        bw = ja.run(3).getBestAndWorst()
         assert truncate(bw['best_value'], 7) == 0.2150036
         assert len(bw['best_solution']) == 2
         assert truncate(bw['best_solution'][0], 9) == -0.031679095
