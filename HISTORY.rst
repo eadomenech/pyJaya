@@ -28,3 +28,8 @@ History
 ------------------
 
 * Fix clasic, adaptive and quasi.
+
+0.1.8 (2021-01-17)
+------------------
+
+* Tests with monkeypatch.

@@ -20,26 +20,26 @@ def sphere(solution):
 
 
 def main():
-    print("RUN: JayaClasic")
+
+    # Vars
     listVars = [VariableFloat(-100.0, 100.0) for i in range(30)]
+
+    print("RUN: JayaClasic")
     ja = JayaClasic(100, listVars, sphere)
     print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")
 
     print("RUN: Self-adaptive Jaya Algorithm")
-    listVars = [VariableFloat(-100.0, 100.0) for i in range(30)]
     ja = JayaSelfAdaptive(listVars, sphere)
     print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")
 
     print("RUN: Quasi-oppositional Based Jaya (QO-Jaya) Algorithm")
-    listVars = [VariableFloat(-100.0, 100.0) for i in range(30)]
     ja = JayaQuasiOppositional(100, listVars, sphere)
     print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")
 
     print("RUN: Self-adaptive Multi-population (SAMP) Jaya Algorithm")
-    listVars = [VariableFloat(-100.0, 100.0) for i in range(30)]
     ja = JayaSAMP(100, listVars, sphere)
     print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")
@@ -47,7 +47,6 @@ def main():
     print(
         "RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya " +
         "Algorithm MultiProcess")
-    listVars = [VariableFloat(-100.0, 100.0) for i in range(30)]
     ja = MultiprocessJayaSAMPE(100, listVars, sphere)
     print(ja.run(100).getBestAndWorst())
     print("--------------------------------------------------------------")

@@ -54,8 +54,11 @@ def himmelblauConstraintTwo(solution):
 
 
 def main():
-    print("RUN: JayaClasic")
+
+    # Vars
     listVars = [VariableFloat(-6.0, 6.0) for i in range(2)]
+
+    print("RUN: JayaClasic")
     ja = JayaClasic(
         100, listVars, himmelblau,
         listConstraints=[himmelblauConstraintOne, himmelblauConstraintTwo])
@@ -63,7 +66,6 @@ def main():
     print("--------------------------------------------------------------")
 
     print("RUN: Self-adaptive Jaya Algorithm")
-    listVars = [VariableFloat(-6.0, 6.0) for i in range(2)]
     ja = JayaSelfAdaptive(
         listVars, himmelblau,
         listConstraints=[himmelblauConstraintOne, himmelblauConstraintTwo])
@@ -71,7 +73,6 @@ def main():
     print("--------------------------------------------------------------")
 
     print("RUN: Quasi-oppositional Based Jaya (QO-Jaya) Algorithm")
-    listVars = [VariableFloat(-6.0, 6.0) for i in range(2)]
     ja = JayaQuasiOppositional(
         100, listVars, himmelblau,
         listConstraints=[himmelblauConstraintOne, himmelblauConstraintTwo])
@@ -79,7 +80,6 @@ def main():
     print("--------------------------------------------------------------")
 
     print("RUN: Self-adaptive Multi-population (SAMP) Jaya Algorithm")
-    listVars = [VariableFloat(-6.0, 6.0) for i in range(2)]
     ja = JayaSAMP(
         100, listVars, himmelblau,
         listConstraints=[himmelblauConstraintOne, himmelblauConstraintTwo])
@@ -89,7 +89,6 @@ def main():
     print(
         "RUN: Self-adaptive Multi-population Elitist (SAMPE) Jaya " +
         "Algorithm MultiProcess")
-    listVars = [VariableFloat(-6.0, 6.0) for i in range(2)]
     ja = JayaSAMPE(
         100, listVars, himmelblau,
         listConstraints=[himmelblauConstraintOne, himmelblauConstraintTwo])
