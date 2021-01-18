@@ -188,8 +188,9 @@ class TestConstrainedJayaClasicInHimmelblau:
     """Constrained Jaya Clasic in Himmelblau tests"""
 
     def setup(self):
+        self.index = 0
         # scaling factors
-        self.rs1 = [[[0.25, 0.43], [0.47, 0.33]]]
+        self.rn = [0.25, 0.43, 0.47, 0.33]
         # Solutions
         s1 = Solution([], himmelblau)
         s1.setSolution(np.array([3.22, 0.403]))
@@ -204,15 +205,21 @@ class TestConstrainedJayaClasicInHimmelblau:
         # Population
         self.population = Population(0, solutions=[s1, s2, s3, s4, s5])
 
-    def test_first_iteration(self):
+    def test_first_iteration(self, monkeypatch):
         """Tests first iteration."""
+
+        def rn():
+            self.index += 1
+            return self.rn[self.index-1]
+        monkeypatch.setattr(np.random, 'rand', rn)
+
         listVars = [VariableFloat(-5.0, 5.0) for i in range(2)]
         ja = JayaClasic(
             5, listVars, himmelblau, population=self.population,
             listConstraints=[
                 himmelblauConstraintOne,
                 himmelblauConstraintTwo])
-        bw = ja.run(1, self.rs1).getBestAndWorst()
+        bw = ja.run(1).getBestAndWorst()
         assert truncate(bw['best_value'], 3) == 11.890
         assert len(bw['best_solution']) == 2
         assert truncate(bw['best_solution'][0], 3) == 3.845
