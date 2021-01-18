@@ -44,11 +44,8 @@ class TestUnconstrainedJayaClasicInSphere:
 
     def setup(self):
         # scaling factors
-        self.rs1 = [[[0.58, 0.81], [0.92, 0.49]]]
-        self.rs2 = [
-            [[0.58, 0.81], [0.92, 0.49]],
-            [[0.27, 0.23], [0.38, 0.51]]
-        ]
+        self.index = 0
+        self.rn = [0.58, 0.81, 0.92, 0.49, 0.27, 0.23, 0.38, 0.51]
         # Solutions
         s1 = Solution([], sphere)
         s1.setSolution(np.array([-5.0, 18.0]))
@@ -63,11 +60,17 @@ class TestUnconstrainedJayaClasicInSphere:
         # Population
         self.population = Population(0, solutions=[s1, s2, s3, s4, s5])
 
-    def test_first_iteration(self):
+    def test_first_iteration(self, monkeypatch):
         """Tests first iteration."""
+
+        def rn():
+            self.index += 1
+            return self.rn[self.index-1]
+        monkeypatch.setattr(np.random, 'rand', rn)
+
         listVars = [VariableFloat(-100.0, 100.0) for i in range(2)]
         ja = JayaClasic(5, listVars, sphere, population=self.population)
-        bw = ja.run(1, self.rs1).getBestAndWorst()
+        bw = ja.run(1).getBestAndWorst()
         assert bw['best_value'] == 113.0
         assert len(bw['best_solution']) == 2
         assert all([a == b for a, b in zip(bw['best_solution'], [-8.0, 7.0])])
@@ -76,11 +79,17 @@ class TestUnconstrainedJayaClasicInSphere:
         assert all(
             [a == b for a, b in zip(bw['worst_solution'], [-44.12, 45.29])])
 
-    def test_second_iteration(self):
+    def test_second_iteration(self, monkeypatch):
         """Tests second iteration."""
+
+        def rn():
+            self.index += 1
+            return self.rn[self.index-1]
+        monkeypatch.setattr(np.random, 'rand', rn)
+
         listVars = [VariableFloat(-100.0, 100.0) for i in range(2)]
         ja = JayaClasic(5, listVars, sphere, population=self.population)
-        bw = ja.run(2, self.rs2).getBestAndWorst()
+        bw = ja.run(2).getBestAndWorst()
         assert truncate(bw['best_value'], 2) == 7.78
         assert len(bw['best_solution']) == 2
         assert truncate(bw['best_solution'][0], 3) == 2.787
