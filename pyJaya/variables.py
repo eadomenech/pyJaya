@@ -69,13 +69,7 @@ class VariableInt(Variable):
         Returns:
             int: Value in the range.
         """
-        item = round(item)
-        if item > self.major:
-            return self.major
-        elif item < self.minor:
-            return self.minor
-        else:
-            return int(item)
+        return int(np.clip(round(item), self.minor, self.major))
 
 
 class VariableFloat(Variable):
@@ -123,12 +117,7 @@ class VariableFloat(Variable):
         Returns:
             float: Value in the range.
         """
-        if item > self.major:
-            return self.major
-        elif item < self.minor:
-            return self.minor
-        else:
-            return float(item)
+        return float(np.clip(item, self.minor, self.major))
 
 
 class VariableBinary(Variable):
@@ -161,10 +150,4 @@ class VariableBinary(Variable):
         Returns:
             int: Value in the range.
         """
-        item = round(item)
-        if item > 1.0:
-            return 1
-        elif item < 0.0:
-            return 0
-        else:
-            return int(item)
+        return int(np.clip(round(item), self.minor, self.major))
