@@ -30,7 +30,8 @@ class Solution():
         """
         return str(self.solution)
 
-    def __init__(self, listVars, functionToEvaluate, listConstraints=[]):
+    def __init__(
+            self, listVars, functionToEvaluate, listConstraints=[]):
 
         self.cantVars = len(listVars)
         self.listVars = listVars
@@ -72,13 +73,13 @@ class Solution():
         Returns:
             Float: Result when evaluating the solution.
         """
-        return self.functionToEvaluate(*[self.solution])
+        return self.functionToEvaluate(tuple(*[self.solution]))
 
     def setSolution(self, solution):
         """Set solution
 
         Args:
-            solution (Solution): Solution to be assigned.
+            solution (list or np.array): Solution to be assigned.
         """
         self.solution = solution
         self.value = self.evaluate()

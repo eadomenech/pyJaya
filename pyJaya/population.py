@@ -2,9 +2,13 @@
 """
 Population class
 """
+import copy
+import random
+
+import numpy as np
+
 from pyJaya.solution import Solution
 from pyJaya.consts import minimaxType
-import copy
 
 
 class Population():
@@ -20,7 +24,7 @@ class Population():
         self.minimax = minimax
 
     def generate(
-            self, numSolutions, listVars, functionToEvaluate,
+            self, numSolutions, listVars, functionToEvaluate, space,
             listConstraints):
         """Population generator
 
@@ -28,13 +32,29 @@ class Population():
             numSolutions (int): Number of solutions.
             listVars (list): Range list.
             functionToEvaluate (funtion): Function to minimize or maximize.
+            space (bool): Spaced numbers over a specified interval.
             listConstraints (list, optional): Constraint list. Defaults to [].
         """
-        for i in range(numSolutions):
-            solution = Solution(
-                listVars, functionToEvaluate, listConstraints)
-            solution.generate()
-            self.solutions.append(solution)
+        if space:
+            v = []
+            for item in listVars:
+                l = np.linspace(item.minor, item.major, numSolutions).tolist()
+                random.shuffle(l)
+                v.append(l)
+            for i in range(numSolutions):
+                solution = Solution(
+                    listVars, functionToEvaluate, listConstraints)
+                s = []
+                for item, value in enumerate(listVars):
+                    s.append(value.convert(v[item][i]))
+                solution.setSolution(s)
+                self.solutions.append(solution)
+        else:
+            for i in range(numSolutions):
+                solution = Solution(
+                    listVars, functionToEvaluate, listConstraints)
+                solution.generate()
+                self.solutions.append(solution)
 
     def toMaximize(self):
         """Switch to maximize function

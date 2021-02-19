@@ -10,11 +10,11 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [ ]
+requirements = ['numpy>=1.19.5']
 
-setup_requirements = ['pytest-runner', ]
+# setup_requirements = ['pytest-runner', ]
 
-test_requirements = ['pytest>=3', ]
+# test_requirements = ['pytest>=3', ]
 
 setup(
     author="Ernesto Avila-Domenech",
@@ -39,9 +39,9 @@ setup(
     keywords='pyJaya',
     name='pyJaya',
     packages=find_packages(include=['pyJaya', 'pyJaya.*']),
-    setup_requires=setup_requirements,
-    test_suite='tests',
-    tests_require=test_requirements,
+    # setup_requires=setup_requirements,
+    # test_suite='tests',
+    # tests_require=test_requirements,
     url='https://github.com/eadomenech/pyJaya',
     version='0.1.7',
     zip_safe=False,

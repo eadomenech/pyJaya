@@ -13,21 +13,25 @@ class JayaBase(object):
         numSolutions (int): Number of solutions of population.
         listVars (list): Range list.
         functionToEvaluate (funtion): Function to minimize or maximize.
+        space (bool): Spaced numbers over a specified interval.
+        minimaxType (minimaxType, optional): Min or Max. Defaults to [minimize]
         listConstraints (list, optional): Constraint list. Defaults to [].
         population (Population, optional): Population. Defaults to None.
     """
 
     def __init__(
-            self, numSolutions, listVars, functionToEvaluate,
-            listConstraints=[], population=None):
+            self, numSolutions, listVars, functionToEvaluate, space=False,
+            minimaxType=minimaxType['minimize'], listConstraints=[],
+            population=None):
 
         super(JayaBase, self).__init__()
         self.functionToEvaluate = functionToEvaluate
         self.numSolutions = numSolutions
         self.listVars = listVars
         self.cantVars = len(listVars)
-        self.minimax = minimaxType['minimize']
+        self.minimax = minimaxType
         self.listConstraints = listConstraints
+        self.space = space
 
         if population is None:
             self.population = self.generatePopulation()
@@ -56,7 +60,7 @@ class JayaBase(object):
         population = Population(self.minimax)
         population.generate(
             self.numSolutions, self.listVars, self.functionToEvaluate,
-            self.listConstraints)
+            self.space, self.listConstraints)
         return population
 
     def addConstraint(self, constraintFuntion):

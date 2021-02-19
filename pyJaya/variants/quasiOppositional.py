@@ -14,6 +14,7 @@ class JayaQuasiOppositional(JayaBase):
         numSolutions (int): Number of solutions of population.
         listVars (list): Range list.
         functionToEvaluate (funtion): Function to minimize or maximize.
+        space (bool): Spaced numbers over a specified interval.
         listConstraints (list, optional): Constraint list. Defaults to [].
         population (Population, optional): Population. Defaults to None.
     """
